@@ -37,7 +37,7 @@ namespace cis237_assignment_3
             base.Color = Color;
 
             //
-            droids[droidsLength] = new Droid(Material, Color);
+            droids[droidsLength] = new ProtocolDroid(Material, Color, NumberLanguages);
             droidsLength++;
         }
 

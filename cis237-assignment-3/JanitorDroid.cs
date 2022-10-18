@@ -33,7 +33,24 @@ namespace cis237_assignment_3
 
         public override void CalculateTotalCost()
         {
-            
+            this.TotalCost = base.CalculateBaseCost();
+            if (!_vacuum)
+            {
+                this.TotalCost = 0;
+            }
+            else
+            {
+                this.TotalCost = 10m;
+            }
+
+            if (!_trashCompactor)
+            {
+                this.TotalCost = 0;
+            }
+            else
+            {
+                this.TotalCost = 15m;
+            }
         }
         
         //

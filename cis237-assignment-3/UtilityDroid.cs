@@ -40,7 +40,7 @@ namespace cis237_assignment_3
 
         public override void CalculateTotalCost()
         {
-            
+            this.TotalCost = base.CalculateBaseCost();
         }
 
         /// <summary>

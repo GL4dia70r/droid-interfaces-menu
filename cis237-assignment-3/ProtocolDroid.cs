@@ -8,16 +8,20 @@ namespace cis237_assignment_3
 {
     class ProtocolDroid : Droid
     {
-        private int _numberLanguages;
-
+        //
         protected const decimal COST_PER_LANGUAGE = 50m;
 
+        //
+        private int _numberLanguages;
+
+        //
         public int NumberLanguages
         {
             get { return _numberLanguages; }
             set { _numberLanguages = value; }
         }
 
+        //
         public override string ToString()
         {
             return $"{base.ToString()} {NumberLanguages}";
@@ -25,17 +29,17 @@ namespace cis237_assignment_3
 
         public override void CalculateTotalCost()
         {
-            this.TotalCost = NumberLanguages * costPerLanguage;
-            base.TotalCost = this.TotalCost;
+            this.TotalCost = base.CalculateBaseCost() + NumberLanguages * COST_PER_LANGUAGE;
         }
 
+        //
         public ProtocolDroid(
             string Material,
             string Color,
             int NumberLanguages
         ) : base(Material, Color)
         {
-            this.numberLanguages = NumberLanguages;
+            this._numberLanguages = NumberLanguages;
         }
 
         public ProtocolDroid()
