@@ -10,11 +10,13 @@ using System.Threading.Tasks;
 
 namespace cis237_assignment_3
 {
-    class DroidCollection
+    class DroidCollection : ProtocolDroid
     {
         //
         private Droid[] droids;
         private int droidsLength;
+
+        
 
         //
         public DroidCollection(int size)
@@ -23,15 +25,20 @@ namespace cis237_assignment_3
             this.droidsLength = 0;
         }
 
+        public DroidCollection() { }
+
         //
         public void AddNewDroid(
-            string material,
-            string color,
-            decimal totalCost
-        )
+            string Material,
+            string Color,
+            decimal TotalCost
+        ) 
         {
+            base.Material = Material;
+            base.Color = Color;
+            this._droidTotalCost = TotalCost;
             //
-            droids[droidsLength] = new Droid(material, Color, totalCost);
+            droids[droidsLength] = new ProtocolDroid(Material, Color, TotalCost);
             droidsLength++;
         }
 
