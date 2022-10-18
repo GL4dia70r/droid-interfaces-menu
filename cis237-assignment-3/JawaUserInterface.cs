@@ -8,6 +8,9 @@ namespace cis237_assignment_3
 {
     internal class JawaUserInterface
     {
+        public int GetUserInput()
+        {
 
+        }
     }
 }

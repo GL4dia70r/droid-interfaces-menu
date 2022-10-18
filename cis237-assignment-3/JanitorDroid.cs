@@ -8,14 +8,35 @@ namespace cis237_assignment_3
 {
     internal class JanitorDroid : UtilityDroid
     {
+        //
         private bool _trashCompactor;
         private bool _vacuum;
         
-        public void CalculateTotalCost()
+        //
+        public bool TrashCompactor
         {
-            base.TotalCost = 
+            get { return _trashCompactor; }
+            set { _trashCompactor = value; }
+        }
+
+        public bool Vacuum
+        {
+            get { return _vacuum; }
+            set { _vacuum = value; }
+        }
+
+        //
+        public override string ToString()
+        {
+            return $"{base.ToString()} {TrashCompactor} {Vacuum}";
+        }
+
+        public override void CalculateTotalCost()
+        {
+            
         }
         
+        //
         public JanitorDroid(
             string Material,
             string Color,

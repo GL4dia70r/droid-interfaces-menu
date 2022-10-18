@@ -30,15 +30,14 @@ namespace cis237_assignment_3
         //
         public void AddNewDroid(
             string Material,
-            string Color,
-            decimal TotalCost
-        ) 
+            string Color
+        )
         {
             base.Material = Material;
             base.Color = Color;
-            this._droidTotalCost = TotalCost;
+
             //
-            droids[droidsLength] = new ProtocolDroid(Material, Color, TotalCost);
+            droids[droidsLength] = new Droid(Material, Color);
             droidsLength++;
         }
 
