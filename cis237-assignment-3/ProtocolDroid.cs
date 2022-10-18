@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace cis237_assignment_3
 {
-    class Protocol : Droid
+    class ProtocolDroid : Droid
     {
         private int numberLanguages;
 
@@ -20,21 +20,27 @@ namespace cis237_assignment_3
 
         public override string ToString()
         {
-            return $"{numberLanguages} {costPerLanguage}";
+            return $"{base.ToString()} {numberLanguages.ToString()}";
         }
 
         public override void CalculateTotalCost()
         {
-            this.TotalCost = NumberLanguages * droidType;
+            this.TotalCost = NumberLanguages * costPerLanguage;
+            base.TotalCost = this.TotalCost;
         }
 
-        public Protocol(
+        public ProtocolDroid(
             string Material,
             string Color,
             int NumberLanguages
         ) : base(Material, Color)
         {
             this.numberLanguages = NumberLanguages;
+        }
+
+        public ProtocolDroid()
+        {
+            // Do Nothing
         }
     }
 }

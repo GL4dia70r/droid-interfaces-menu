@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace cis237_assignment_3
 {
-    internal class Utility : Droid
+    class UtilityDroid : Droid
     {
         private bool toolBox;
         private bool computerConnection;
@@ -14,7 +14,7 @@ namespace cis237_assignment_3
 
         public override string ToString()
         {
-            return $"{toolBox} {computerConnection} {scanner}";
+            return $"{base.ToString()} {toolBox} {computerConnection} {scanner}";
         }
 
         public override void CalculateTotalCost()
@@ -30,7 +30,7 @@ namespace cis237_assignment_3
         /// <param name="ToolBox"></param>
         /// <param name="ComputerConnection"></param>
         /// <param name="Scanner"></param>
-        public Utility(
+        public UtilityDroid(
             string Material,
             string Color,
             bool ToolBox,
@@ -41,6 +41,11 @@ namespace cis237_assignment_3
             this.toolBox = ToolBox;
             this.computerConnection = ComputerConnection;
             this.scanner = Scanner;
+        }
+
+        public UtilityDroid()
+        {
+            // Do Nothing
         }
     }
 }
