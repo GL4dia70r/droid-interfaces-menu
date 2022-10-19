@@ -16,8 +16,6 @@ namespace cis237_assignment_3
         private Droid[] droids;
         private int droidsLength;
 
-        
-
         //
         public DroidCollection(int size)
         {
@@ -28,16 +26,90 @@ namespace cis237_assignment_3
         public DroidCollection() { }
 
         //
-        public void AddNewDroid(
+        public void AddNewProtocolDroid(
             string Material,
             string Color
         )
         {
-            base.Material = Material;
-            base.Color = Color;
-
             //
-            droids[droidsLength] = new ProtocolDroid(Material, Color, NumberLanguages);
+            droids[droidsLength] = new ProtocolDroid(
+                Material, 
+                Color, 
+                NumberLanguages
+            );
+
+            droidsLength++;
+        }
+
+        //
+        public void AddNewUtilityDroid(
+            string Material,
+            string Color,
+            bool ToolBox,
+            bool ComputerConnection,
+            bool Scanner
+        )
+        {
+            //
+            droids[droidsLength] = new UtilityDroid(
+                Material, 
+                Color, 
+                ToolBox, 
+                ComputerConnection, 
+                Scanner
+            );
+
+
+            droidsLength++;
+        }
+
+        //
+        public void AddNewJanitorDroid(
+            string Material,
+            string Color,
+            bool TrashCompactor,
+            bool Vacuum,
+            bool ToolBox,
+            bool ComputerConnection,
+            bool Scanner
+        )
+        {
+            //
+            droids[droidsLength] = new JanitorDroid(
+                Material, 
+                Color, 
+                TrashCompactor, 
+                Vacuum, 
+                ToolBox, 
+                ComputerConnection, 
+                Scanner
+            );
+
+            droidsLength++;
+        }
+
+        //
+        public void AddNewAstromechDroid(
+            string Material,
+            string Color,
+            bool ToolBox,
+            bool ComputerConnection,
+            bool Scanner,
+            bool Navigation,
+            int NumberShips
+        )
+        {
+            //
+            droids[droidsLength] = new AstromechDroid(
+                Material,
+                Color,
+                ToolBox,
+                ComputerConnection,
+                Scanner,
+                Navigation,
+                NumberShips
+            );
+
             droidsLength++;
         }
 
