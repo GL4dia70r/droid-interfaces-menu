@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -36,7 +37,18 @@ namespace cis237_assignment_3
         
         public override void CalculateTotalCost()
         {
-            this.TotalCost = base.CalculateBaseCost() + NumberShips * COST_PER_SHIP;
+            decimal OptionCost = 0m;
+
+            if (Navigation)
+            {
+                OptionCost = 1;
+            }
+            else
+            {
+                OptionCost = 0; 
+            }
+
+            this.TotalCost = base.CalculateBaseCost() + OptionCost * COST_PER_OPTION + NumberShips * COST_PER_SHIP;
         }
 
         public AstromechDroid(

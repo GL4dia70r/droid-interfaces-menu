@@ -9,12 +9,13 @@ using System.Linq;
 using System.Reflection.Metadata.Ecma335;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Schema;
 
 namespace cis237_assignment_3
 {
     abstract class Droid : IDroid
     {
-        
+        protected string[] droidModel = new string[] { "Protocol", "Utility", "Janitor", "Astromech" };
         /// <summary>
         ///             -  Varialbes to store the material, color, and total cost of Droids.
         /// </summary>

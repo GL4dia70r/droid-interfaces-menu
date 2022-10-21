@@ -8,6 +8,8 @@ namespace cis237_assignment_3
 {
     class UtilityDroid : Droid
     {
+        protected const decimal COST_PER_OPTION = 60m;
+
         //
         private bool _toolBox;
         private bool _computerConnection;
@@ -40,7 +42,26 @@ namespace cis237_assignment_3
 
         public override void CalculateTotalCost()
         {
-            this.TotalCost = base.CalculateBaseCost();
+            decimal OptionCost = 0;
+
+            if (ToolBox || ComputerConnection || Scanner)
+            {
+                OptionCost = 1;
+            }
+            else if (ToolBox && ComputerConnection || ToolBox && Scanner || ComputerConnection && Scanner)
+            {
+                OptionCost = 2;
+            }
+            else if (ToolBox && ComputerConnection && Scanner)
+            {
+                OptionCost = 3;
+            }
+            else
+            {
+                OptionCost = 0;
+            }
+
+            this.TotalCost = base.CalculateBaseCost() + OptionCost * COST_PER_OPTION;
         }
 
         /// <summary>

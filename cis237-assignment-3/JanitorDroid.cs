@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -33,26 +34,24 @@ namespace cis237_assignment_3
 
         public override void CalculateTotalCost()
         {
-            this.TotalCost = base.CalculateBaseCost();
-            if (!_vacuum)
+            decimal OptionCost = 0;
+
+            if (TrashCompactor || Vacuum)
             {
-                this.TotalCost = 0;
+                OptionCost = 1;
+            }
+            else if (TrashCompactor && Vacuum)
+            {
+                OptionCost = 2;
             }
             else
             {
-                this.TotalCost = 10m;
+                OptionCost = 0;
             }
 
-            if (!_trashCompactor)
-            {
-                this.TotalCost = 0;
-            }
-            else
-            {
-                this.TotalCost = 15m;
-            }
+            this.TotalCost = base.CalculateBaseCost() + OptionCost * COST_PER_OPTION;
         }
-        
+
         //
         public JanitorDroid(
             string Material,
