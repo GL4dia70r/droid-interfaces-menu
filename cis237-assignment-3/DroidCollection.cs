@@ -131,5 +131,19 @@ namespace cis237_assignment_3
             //
             return userReturnString;
         }
+
+        public string FindDroid(string model)
+        {
+            string outputString = null;
+            
+            foreach (Droid droid in droids)
+            {
+                if (droid != null)
+                {
+                    if (droid.Model == model)
+                    outputString = droid.ToString();
+                }
+            }
+        }
     }
 }

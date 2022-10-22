@@ -8,6 +8,9 @@ namespace cis237_assignment_3
 {
     class UtilityDroid : Droid
     {
+        UtilityDroid[] janitorDroid = new JanitorDroid[100];
+        UtilityDroid[] astromechDroid = new AstromechDroid[100];
+
         protected const decimal COST_PER_OPTION = 60m;
 
         //

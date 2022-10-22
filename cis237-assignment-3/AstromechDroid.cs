@@ -48,7 +48,7 @@ namespace cis237_assignment_3
                 OptionCost = 0; 
             }
 
-            this.TotalCost = base.CalculateBaseCost() + OptionCost * COST_PER_OPTION + NumberShips * COST_PER_SHIP;
+            this.TotalCost = base.CalculateBaseCost() + COST_PER_OPTION + NumberShips * COST_PER_SHIP;
         }
 
         public AstromechDroid(
