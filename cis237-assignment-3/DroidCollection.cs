@@ -5,8 +5,10 @@ using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Schema;
 
 namespace cis237_assignment_3
 {
@@ -14,6 +16,11 @@ namespace cis237_assignment_3
     {
         //
         private Droid[] droids;
+        //private ProtocolDroid[] protocol;
+        //private UtilityDroid[] utility;
+        //private JanitorDroid[] janitor;
+        //private AstromechDroid[] astromech;
+
         private int droidsLength;
 
         //
@@ -27,22 +34,32 @@ namespace cis237_assignment_3
 
         //
         public void AddNewProtocolDroid(
+            string Model,
             string Material,
-            string Color
+            string Color,
+            int NumberLanguages
         )
         {
-            //
-            droids[droidsLength] = new ProtocolDroid(
-                Material, 
-                Color, 
-                NumberLanguages
-            );
+            foreach (ProtocolDroid droid in droids)
+            {
+                if (droid.Model == Model)
+                {
+                    Model = droid.Model;
 
+                    //
+                    droids[droidsLength] = new ProtocolDroid(
+                        Material,
+                        Color,
+                        NumberLanguages
+                    );
+                }
+            }
             droidsLength++;
         }
 
         //
         public void AddNewUtilityDroid(
+            string Model,
             string Material,
             string Color,
             bool ToolBox,
@@ -50,21 +67,28 @@ namespace cis237_assignment_3
             bool Scanner
         )
         {
-            //
-            droids[droidsLength] = new UtilityDroid(
-                Material, 
-                Color, 
-                ToolBox, 
-                ComputerConnection, 
-                Scanner
-            );
+            foreach (UtilityDroid droid in droids)
+            {
+                if (droid.Model == Model)
+                {
+                    Model = droid.Model;
 
-
+                    //
+                    droids[droidsLength] = new UtilityDroid(
+                        Material,
+                        Color,
+                        ToolBox,
+                        ComputerConnection,
+                        Scanner
+                    );
+                }
+            }
             droidsLength++;
         }
 
         //
         public void AddNewJanitorDroid(
+            string Model,
             string Material,
             string Color,
             bool TrashCompactor,
@@ -74,22 +98,30 @@ namespace cis237_assignment_3
             bool Scanner
         )
         {
-            //
-            droids[droidsLength] = new JanitorDroid(
-                Material, 
-                Color, 
-                TrashCompactor, 
-                Vacuum, 
-                ToolBox, 
-                ComputerConnection, 
-                Scanner
-            );
+            foreach (JanitorDroid droid in droids)
+            {
+                if (droid.Model == Model)
+                {
+                    Model = droid.Model;
 
+                    //
+                    droids[droidsLength] = new JanitorDroid(
+                        Material,
+                        Color,
+                        TrashCompactor,
+                        Vacuum,
+                        ToolBox,
+                        ComputerConnection,
+                        Scanner
+                    );
+                }
+            }
             droidsLength++;
         }
 
         //
         public void AddNewAstromechDroid(
+            string Model,
             string Material,
             string Color,
             bool ToolBox,
@@ -99,17 +131,24 @@ namespace cis237_assignment_3
             int NumberShips
         )
         {
-            //
-            droids[droidsLength] = new AstromechDroid(
-                Material,
-                Color,
-                ToolBox,
-                ComputerConnection,
-                Scanner,
-                Navigation,
-                NumberShips
-            );
+            foreach (AstromechDroid droid in droids)
+            {
+                if (droid.Model == null)
+                {
+                    Model = droid.Model;
 
+                    //
+                    droids[droidsLength] = new AstromechDroid(
+                        Material,
+                        Color,
+                        ToolBox,
+                        ComputerConnection,
+                        Scanner,
+                        Navigation,
+                        NumberShips
+                    );
+                }
+            }
             droidsLength++;
         }
 
@@ -122,7 +161,7 @@ namespace cis237_assignment_3
             foreach (Droid model in droids)
             {
                 //
-                if (model != null)
+                if (model.Model != null)
                 {
                     userReturnString += model.ToString() +
                         Environment.NewLine;
@@ -138,12 +177,20 @@ namespace cis237_assignment_3
             
             foreach (Droid droid in droids)
             {
-                if (droid != null)
+                if (droids != null)
                 {
-                    if (droid.Model == model)
-                    outputString = droid.ToString();
+                    if (
+                        droid.Model[0] == model
+                        || droid.Model[1] == model
+                        || droid.Model[2] == model
+                        || droid.Model[3] == model
+                    )
+                    {
+                        outputString = droid.ToString();
+                    }
                 }
             }
+            return outputString;
         }
     }
 }

@@ -29,26 +29,47 @@ namespace cis237_assignment_3
             set { _numberShips = value; }
         }
 
+        public new string Model
+        {
+            get 
+            { 
+                return droidName[3]; 
+            }
+        }
+
         //
         public override string ToString()
         {
-            return $"{base.ToString()} {Navigation} {NumberShips}";
+            return $"{base.ToString()}" + 
+                Environment.NewLine + 
+                $"{Navigation}" +
+                Environment.NewLine + 
+                $"{NumberShips}";
         }
         
         public override void CalculateTotalCost()
         {
+            this.TotalCost = base.CalculateBaseCost() + this.CalculateOptionCost();
+        }
+
+        protected new virtual decimal CalculateOptionCost()
+        {
             decimal OptionCost = 0m;
 
-            if (Navigation)
+            if (
+                Navigation
+            )
             {
-                OptionCost = 1;
+                OptionCost = 1m;
             }
             else
             {
-                OptionCost = 0; 
+                OptionCost = 0m;
             }
-
-            this.TotalCost = base.CalculateBaseCost() + COST_PER_OPTION + NumberShips * COST_PER_SHIP;
+            return OptionCost 
+                * COST_PER_OPTION 
+                + NumberShips 
+                * COST_PER_SHIP;
         }
 
         public AstromechDroid(

@@ -26,30 +26,58 @@ namespace cis237_assignment_3
             set { _vacuum = value; }
         }
 
+        public new string Model
+        {
+            get 
+            { 
+                return droidName[2]; 
+            }
+        }
+
         //
         public override string ToString()
         {
-            return $"{base.ToString()} {TrashCompactor} {Vacuum}";
+            return $"{base.ToString()}" +
+                Environment.NewLine + 
+                $"{TrashCompactor}" +
+                Environment.NewLine + 
+                $"{Vacuum}";
         }
 
         public override void CalculateTotalCost()
         {
-            decimal OptionCost = 0;
+            this.TotalCost = base.CalculateBaseCost() + this.CalculateOptionCost();
+        }
 
-            if (TrashCompactor || Vacuum)
+        protected new decimal CalculateOptionCost()
+        {
+            decimal OptionCost = 0m;
+
+            bool[] options = { 
+                TrashCompactor, 
+                Vacuum 
+            };
+
+            if (
+                options[0] 
+                || 
+                options[1]
+            )
             {
-                OptionCost = 1;
+                OptionCost = 1m;
             }
-            else if (TrashCompactor && Vacuum)
+            else if (
+                options[0] 
+                && options[1]
+            )
             {
-                OptionCost = 2;
+                OptionCost = 2m;
             }
             else
             {
-                OptionCost = 0;
+                OptionCost = 0m;
             }
-
-            this.TotalCost = base.CalculateBaseCost() + OptionCost * COST_PER_OPTION;
+            return OptionCost * COST_PER_OPTION;
         }
 
         //

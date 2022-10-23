@@ -21,10 +21,21 @@ namespace cis237_assignment_3
             set { _numberLanguages = value; }
         }
 
+        public new string Model
+        {
+            get 
+            { 
+                return droidName[0]; 
+            }
+        }
+
         //
         public override string ToString()
         {
-            return $"{base.ToString()} {NumberLanguages}";
+                
+            return $"{base.ToString()}" + 
+                Environment.NewLine + 
+                $"{NumberLanguages}";
         }
 
         public override void CalculateTotalCost()

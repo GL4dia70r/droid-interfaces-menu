@@ -8,9 +8,6 @@ namespace cis237_assignment_3
 {
     class UtilityDroid : Droid
     {
-        UtilityDroid[] janitorDroid = new JanitorDroid[100];
-        UtilityDroid[] astromechDroid = new AstromechDroid[100];
-
         protected const decimal COST_PER_OPTION = 60m;
 
         //
@@ -37,34 +34,75 @@ namespace cis237_assignment_3
             set { _scanner = value; }
         }
         
+        public new string Model
+        {
+            get 
+            { 
+                return droidName[1]; 
+            }
+        }
+
         //
         public override string ToString()
         {
-            return $"{base.ToString()} {ToolBox} {ComputerConnection} {Scanner}";
+            return $"{base.ToString()}" +
+                Environment.NewLine + 
+                $"{ToolBox}" +
+                Environment.NewLine +
+                $"{ComputerConnection}" +
+                Environment.NewLine + 
+                $"{Scanner}";
         }
 
         public override void CalculateTotalCost()
         {
-            decimal OptionCost = 0;
+            this.TotalCost = base.CalculateBaseCost() + 
+                this.CalculateOptionCost();
+        }
 
-            if (ToolBox || ComputerConnection || Scanner)
+        protected decimal CalculateOptionCost()
+        {
+            decimal OptionCost = 0m;
+
+            if (
+                ToolBox
+                ||
+                ComputerConnection
+                ||
+                Scanner
+            )
             {
-                OptionCost = 1;
+                OptionCost = 1m;
             }
-            else if (ToolBox && ComputerConnection || ToolBox && Scanner || ComputerConnection && Scanner)
+            else if (
+                ToolBox
+                && ComputerConnection
+                && !Scanner
+                || 
+                ToolBox 
+                && Scanner 
+                && !ComputerConnection
+                || 
+                ComputerConnection 
+                && Scanner
+                && !ToolBox
+            )
             {
-                OptionCost = 2;
+                OptionCost = 2m;
             }
-            else if (ToolBox && ComputerConnection && Scanner)
+            else if (
+                ToolBox 
+                && ComputerConnection 
+                && Scanner
+            )
             {
-                OptionCost = 3;
+                OptionCost = 3m;
             }
             else
             {
-                OptionCost = 0;
+                OptionCost = 0m;
             }
-
-            this.TotalCost = base.CalculateBaseCost() + OptionCost * COST_PER_OPTION;
+            return OptionCost * COST_PER_OPTION;
         }
 
         /// <summary>

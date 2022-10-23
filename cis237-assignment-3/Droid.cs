@@ -15,18 +15,19 @@ namespace cis237_assignment_3
 {
     abstract class Droid : IDroid
     {
-        Droid[] protocolDroid = new ProtocolDroid[100];
-        Droid[] utilityDroid = new UtilityDroid[100];
-
-
         /// <summary>
         ///             -  Varialbes to store the material, color, and total cost of Droids.
         /// </summary>
-        protected string[] materials;
-        protected string[] colors;
-
         protected const decimal COST_PER_MATERIAL = 500m;
         protected const decimal COST_PER_COLOR = 10m;
+
+        protected string[] droidName =
+        {
+            "Protocol",
+            "Utility",
+            "Janitor",
+            "Astromech"
+        };
 
         private string _droidMaterial;
         private string _droidColor;
@@ -60,13 +61,27 @@ namespace cis237_assignment_3
             set { this._totalCost = BaseCost; }
         }
 
+        public string[] Model
+        {
+            get { return droidName; }
+            set { droidName = value; }
+        }
+
         /// <summary>
         ///             -  Methods for droid properties.
         /// </summary>
         /// <returns>ToString of variables Material and Color</returns>
         public override string ToString()
         {
-            return $"{Material} {Color} {BaseCost} {TotalCost}";
+            return $"Model: {Model}" +
+                Environment.NewLine +
+                $"Material: {Material}" +
+                Environment.NewLine +
+                $"Color: {Color}" +
+                Environment.NewLine +
+                $"Base cost: {BaseCost}" +
+                Environment.NewLine + 
+                $"Total cost: {TotalCost}";
         }
 
         public virtual void CalculateTotalCost()
