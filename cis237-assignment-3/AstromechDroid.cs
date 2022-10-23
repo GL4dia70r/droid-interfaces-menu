@@ -32,11 +32,7 @@ namespace cis237_assignment_3
         //
         public override string ToString()
         {
-            return $"{base.ToString()}" + 
-                Environment.NewLine + 
-                $"{Navigation}" +
-                Environment.NewLine + 
-                $"{NumberShips}";
+            return $"{base.ToString()} {Navigation} {NumberShips}";
         }
         
         public override void CalculateTotalCost()
@@ -58,10 +54,7 @@ namespace cis237_assignment_3
             {
                 OptionCost = 0m;
             }
-            return OptionCost 
-                * COST_PER_OPTION 
-                + NumberShips 
-                * COST_PER_SHIP;
+            return OptionCost * COST_PER_OPTION + NumberShips * COST_PER_SHIP;
         }
 
         public AstromechDroid(

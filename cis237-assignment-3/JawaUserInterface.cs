@@ -18,23 +18,6 @@ namespace cis237_assignment_3
         const int MAX_DROIDMENU_CHOICES = 5;
         const int MAX_MATERIALMENU_CHOICES = 6;
         const int MAX_COLORMENU_CHOICES = 9;
-
-        
-
-        protected string[] materialsList = { "Titanium Gold", "Titanium", "Gold", "Silver", "Bronze" };
-        protected string[] colorsList = { "Red", "Orange", "Blue", "Green", "Yellow", "White", "Black", "Purple" };
-
-        public string[] MaterialOptions
-        {
-            get { return materialsList; }
-            set { materialsList = value; }
-        }
-
-        public string[] ColorOptions
-        {
-            get { return colorsList; }
-            set { colorsList = value; }
-        }
         
         public void WelcomeGreeting()
         {
@@ -606,27 +589,27 @@ namespace cis237_assignment_3
         private string GetDroidHeader()
         {
             return String.Format(
-                "{0,-12} {1,6} {2,-6} {3,-25} {4,-5} {5,6} {6,-6} {7,-6} {8,-6} {9,-6}",
-                "Model",
+                "{0,-12} {1,-6} {2,20}",
                 "Material",
                 "Color", 
+                "Number Of Languages",
                 "ToolBox",
-                "ComputerConnection",
+                "Computer Connection",
                 "Scanner",
-                "TrashCompactor",
+                "Trash Compactor",
                 "Vacuum",
                 "Navigation",
-                "NumberShips",
+                "Number Of Ships",
                 "Total Cost"
                 ) +
             Environment.NewLine +
             String.Format(
-                "{0,-12} {1,6} {2,-6} {3,-25} {4,-5} {5,6} {6,-6} {7,-6} {8,-6} {9,-6}",
+                "{0,-12} {1,-6} {2,20}",
                 new String('-', 12),
-                new String('-', 20),
                 new String('-', 7),
-                new String('-', 6),
-                new String('-', 6),
+                new String('-', 26),
+                new String('-', 10),
+                new String('-', 26),
                 new String('-', 6),
                 new String('-', 6),
                 new String('-', 6),

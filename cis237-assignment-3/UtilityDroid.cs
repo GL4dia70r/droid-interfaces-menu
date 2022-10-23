@@ -37,13 +37,7 @@ namespace cis237_assignment_3
         //
         public override string ToString()
         {
-            return $"{base.ToString()}" +
-                Environment.NewLine + 
-                $"{ToolBox}" +
-                Environment.NewLine +
-                $"{ComputerConnection}" +
-                Environment.NewLine + 
-                $"{Scanner}";
+            return $"{base.ToString()} {ToolBox} {ComputerConnection} {Scanner}";
         }
 
         public override void CalculateTotalCost()

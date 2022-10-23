@@ -36,7 +36,7 @@ namespace cis237_assignment_3
 
                         int droidChoice = ui.DisplayDroidMenuAndGetUserInput();
 
-                        while (droidChoice != 6)
+                        while (droidChoice != 5)
                         {
                             switch (droidChoice)
                             {
@@ -55,14 +55,13 @@ namespace cis237_assignment_3
                                                 int.Parse(newDroidInformation[3])
 
                                             );
+
                                         ui.DisplayAddDroidSuccess();
-                                        break;
                                     }
                                     else
                                     {
                                         ui.DisplayDroidAlreadyExistsError();
                                     }
-
                                     break;
 
                                 case 2:
@@ -84,7 +83,6 @@ namespace cis237_assignment_3
 
 
                                         ui.DisplayAddDroidSuccess();
-                                        break;
                                     }
                                     else
                                     {
@@ -113,7 +111,6 @@ namespace cis237_assignment_3
 
 
                                         ui.DisplayAddDroidSuccess();
-                                        break;
                                     }
                                     else
                                     {
@@ -139,16 +136,21 @@ namespace cis237_assignment_3
                                                 bool.Parse(newDroidInformation3[6]),
                                                 int.Parse(newDroidInformation3[7])
                                         );
+
                                         ui.DisplayAddDroidSuccess();
-                                        break;
                                     }
                                     else
                                     {
                                         ui.DisplayDroidAlreadyExistsError();
                                     }
                                     break;
+                                default:
+                                    return;
 
                             }
+
+                            //
+                            droidChoice = ui.DisplayDroidMenuAndGetUserInput();
                         }
                         break;
 
@@ -161,9 +163,13 @@ namespace cis237_assignment_3
                         else
                         {
                             ui.DisplayAllDroidsError();
+                            
                         }
                         break;
                 }
+
+                //
+                choice = ui.DisplayMenuAndGetUserInput();
             }    
         }
     }

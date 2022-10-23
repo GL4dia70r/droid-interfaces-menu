@@ -23,11 +23,8 @@ namespace cis237_assignment_3
 
         //
         public override string ToString()
-        {
-                
-            return $"{base.ToString()}" + 
-                Environment.NewLine + 
-                $"{NumberLanguages}";
+        {  
+            return $"{base.ToString()} {NumberLanguages}";
         }
 
         public override void CalculateTotalCost()

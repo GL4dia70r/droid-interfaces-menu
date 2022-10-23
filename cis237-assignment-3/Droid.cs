@@ -50,7 +50,7 @@ namespace cis237_assignment_3
         public decimal TotalCost
         {
             get { return this._totalCost; }
-            set { this._totalCost = BaseCost; }
+            set { this._totalCost = value; }
         }
         /// <summary>
         ///             -  Methods for droid properties.
@@ -58,13 +58,7 @@ namespace cis237_assignment_3
         /// <returns>ToString of variables Material and Color</returns>
         public override string ToString()
         {
-            return $"Material: {Material}" +
-                Environment.NewLine +
-                $"Color: {Color}" +
-                Environment.NewLine +
-                $"Base cost: {BaseCost}" +
-                Environment.NewLine + 
-                $"Total cost: {TotalCost}";
+            return $"{Material} {Color, 12} {CalculateBaseCost()}";
         }
 
         public virtual void CalculateTotalCost()
@@ -74,8 +68,15 @@ namespace cis237_assignment_3
 
         protected decimal CalculateBaseCost()
         {
-            this.BaseCost = COST_PER_MATERIAL + COST_PER_COLOR;
-            return BaseCost;
+            if (Material != null && Color != null)
+            {
+                this.BaseCost = COST_PER_MATERIAL * 1 + COST_PER_COLOR * 1;
+            }
+            else
+            {
+                this.BaseCost = COST_PER_MATERIAL * 0 + COST_PER_COLOR * 0;
+            }
+            return this.BaseCost;
         }
 
         /// <summary>

@@ -134,10 +134,10 @@ namespace cis237_assignment_3
             //
             string userReturnString = "";
             //
-            foreach (Droid model in droids)
+            foreach (IDroid model in droids)
             {
                 //
-                if (model.CalculateTotalCost != null)
+                if (model != null)
                 {
                     userReturnString += model.ToString() +
                         Environment.NewLine;
