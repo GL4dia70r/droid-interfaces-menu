@@ -40,20 +40,14 @@ namespace cis237_assignment_3
             int NumberLanguages
         )
         {
-            foreach (ProtocolDroid droid in droids)
-            {
-                if (droid.Model == Model)
-                {
-                    Model = droid.Model;
+            //
+            droids[droidsLength] = new ProtocolDroid(
+                Material,
+                Color,
+                NumberLanguages
+            );
 
-                    //
-                    droids[droidsLength] = new ProtocolDroid(
-                        Material,
-                        Color,
-                        NumberLanguages
-                    );
-                }
-            }
+
             droidsLength++;
         }
 
@@ -67,22 +61,16 @@ namespace cis237_assignment_3
             bool Scanner
         )
         {
-            foreach (UtilityDroid droid in droids)
-            {
-                if (droid.Model == Model)
-                {
-                    Model = droid.Model;
+            //
+            droids[droidsLength] = new UtilityDroid(
+                Material,
+                Color,
+                ToolBox,
+                ComputerConnection,
+                Scanner
+            );
 
-                    //
-                    droids[droidsLength] = new UtilityDroid(
-                        Material,
-                        Color,
-                        ToolBox,
-                        ComputerConnection,
-                        Scanner
-                    );
-                }
-            }
+
             droidsLength++;
         }
 
@@ -98,24 +86,18 @@ namespace cis237_assignment_3
             bool Scanner
         )
         {
-            foreach (JanitorDroid droid in droids)
-            {
-                if (droid.Model == Model)
-                {
-                    Model = droid.Model;
+            //
+            droids[droidsLength] = new JanitorDroid(
+                Material,
+                Color,
+                TrashCompactor,
+                Vacuum,
+                ToolBox,
+                ComputerConnection,
+                Scanner
+            );
 
-                    //
-                    droids[droidsLength] = new JanitorDroid(
-                        Material,
-                        Color,
-                        TrashCompactor,
-                        Vacuum,
-                        ToolBox,
-                        ComputerConnection,
-                        Scanner
-                    );
-                }
-            }
+
             droidsLength++;
         }
 
@@ -131,24 +113,18 @@ namespace cis237_assignment_3
             int NumberShips
         )
         {
-            foreach (AstromechDroid droid in droids)
-            {
-                if (droid.Model == null)
-                {
-                    Model = droid.Model;
+            //
+            droids[droidsLength] = new AstromechDroid(
+                Material,
+                Color,
+                ToolBox,
+                ComputerConnection,
+                Scanner,
+                Navigation,
+                NumberShips
+            );
 
-                    //
-                    droids[droidsLength] = new AstromechDroid(
-                        Material,
-                        Color,
-                        ToolBox,
-                        ComputerConnection,
-                        Scanner,
-                        Navigation,
-                        NumberShips
-                    );
-                }
-            }
+
             droidsLength++;
         }
 
@@ -177,14 +153,21 @@ namespace cis237_assignment_3
             
             foreach (Droid droid in droids)
             {
-                if (droids != null)
+                if (droids == null)
                 {
-                    if (
-                        droid.Model[0] == model
-                        || droid.Model[1] == model
-                        || droid.Model[2] == model
-                        || droid.Model[3] == model
-                    )
+                    if (droid.Model[0] == model)
+                    {
+                        outputString = droid.ToString();
+                    }
+                    else if (droid.Model[1] == model)
+                    {
+                        outputString = droid.ToString();
+                    }
+                    else if (droid.Model[2] == model)
+                    {
+                        outputString = droid.ToString();
+                    }
+                    else if (droid.Model[3] == model)
                     {
                         outputString = droid.ToString();
                     }

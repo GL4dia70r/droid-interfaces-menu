@@ -1,9 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Reflection;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml;
 
 namespace cis237_assignment_3
 {
@@ -15,23 +18,24 @@ namespace cis237_assignment_3
         const int MAX_DROIDMENU_CHOICES = 5;
         const int MAX_MATERIALMENU_CHOICES = 6;
         const int MAX_COLORMENU_CHOICES = 9;
+
         
 
         protected string[] materialsList = { "Titanium Gold", "Titanium", "Gold", "Silver", "Bronze" };
         protected string[] colorsList = { "Red", "Orange", "Blue", "Green", "Yellow", "White", "Black", "Purple" };
 
-        public string[] Material
+        public string[] MaterialOptions
         {
             get { return materialsList; }
             set { materialsList = value; }
         }
 
-        public string[] Color
+        public string[] ColorOptions
         {
             get { return colorsList; }
             set { colorsList = value; }
         }
-
+        
         public void WelcomeGreeting()
         {
             Console.ForegroundColor = ConsoleColor.Yellow;
@@ -39,8 +43,7 @@ namespace cis237_assignment_3
             Console.ForegroundColor = ConsoleColor.Gray;
         }
 
-        
-
+        //
         public int DisplayMenuAndGetUserInput()
         {
             string selection;
@@ -70,6 +73,7 @@ namespace cis237_assignment_3
             
         }
 
+        //
         public int DisplayDroidMenuAndGetUserInput()
         {
             string selection;
@@ -98,6 +102,7 @@ namespace cis237_assignment_3
 
         }
 
+        //
         public int DisplayMaterialMenuAndGetUserInput()
         {
             string selection;
@@ -126,6 +131,7 @@ namespace cis237_assignment_3
 
         }
 
+        //
         public int DisplayColorMenuAndGetUserInput()
         {
             string selection;
@@ -154,9 +160,10 @@ namespace cis237_assignment_3
 
         }
 
+        //
         public string[] GetNewProtocolDroidInformation()
         {
-            string Model = "Protocol";
+            string Model = null;
             string Material = this.GetStringMaterialField("Material");
             string Color = this.GetStringColorField("Color");
             string NumberLanguages = this.GetIntField("Number Of Languages");
@@ -164,9 +171,10 @@ namespace cis237_assignment_3
             return new string[] { Model, Material, Color, NumberLanguages };
         }
 
+        //
         public string[] GetNewUtilityDroidInformation()
         {
-            string Model = "Utility";
+            string Model = null;
             string Material = this.GetStringMaterialField("Material");
             string Color = this.GetStringColorField("Color");
             string ToolBox = this.GetBoolField("ToolBox");
@@ -176,9 +184,10 @@ namespace cis237_assignment_3
             return new string[] { Model, Material, Color, ToolBox, ComputerConnection, Scanner };
         }
 
+        //
         public string[] GetNewJanitorDroidInformation()
         {
-            string Model = "Janitor";
+            string Model = null;
             string Material = this.GetStringMaterialField("Material");
             string Color = this.GetStringColorField("Color");
             string TrashCompactor = this.GetBoolField("Trash Compactor");
@@ -187,12 +196,15 @@ namespace cis237_assignment_3
             string ComputerConnection = this.GetBoolField("Computer Connection");
             string Scanner = this.GetBoolField("Scanner");
 
+
+
             return new string[] { Model, Material, Color, TrashCompactor, Vacuum, ToolBox, ComputerConnection, Scanner };
         }
 
+        //
         public string[] GetNewAstromechDroidInformation()
         {
-            string Model = "Astromech";
+            string Model = null;
             string Material = this.GetStringMaterialField("Material");
             string Color = this.GetStringColorField("Color");
             string ToolBox = this.GetBoolField("ToolBox");
@@ -204,6 +216,7 @@ namespace cis237_assignment_3
             return new string[] { Model, Material, Color, ToolBox, ComputerConnection, Scanner, Navigation, NumberShips };
         }
 
+        //
         public void DisplayAddDroidSuccess()
         {
             Console.WriteLine();
@@ -212,6 +225,7 @@ namespace cis237_assignment_3
             Console.ForegroundColor = ConsoleColor.Gray;
         }
 
+        //
         public void DisplayDroidAlreadyExistsError()
         {
             Console.WriteLine();
@@ -220,6 +234,7 @@ namespace cis237_assignment_3
             Console.ForegroundColor = ConsoleColor.Gray;
         }
 
+        //
         public void DisplayAllDroids(string allDroidsOutput)
         {
             Console.WriteLine();
@@ -232,6 +247,7 @@ namespace cis237_assignment_3
             Console.WriteLine(allDroidsOutput);
         }
 
+        //
         public void DisplayAllDroidsError()
         {
             Console.WriteLine();
@@ -240,6 +256,7 @@ namespace cis237_assignment_3
             Console.ForegroundColor = ConsoleColor.Gray;
         }
 
+        //
         private void MenuOptions()
         {
             Console.WriteLine();
@@ -251,45 +268,51 @@ namespace cis237_assignment_3
             Console.WriteLine("4. Exit.");
         }
 
+        //
         private void MenuDroidOptions()
         {
-            Console.WriteLine();
-            Console.WriteLine("What is your Droid model? (Choose below)");
-            Console.WriteLine();
-            Console.WriteLine("1. Protocol.");
-            Console.WriteLine("2. Utility.");
-            Console.WriteLine("3. Janitor.");
-            Console.WriteLine("4. Astromech.");
-            Console.WriteLine("5. Cancel.");
+            
+                Console.WriteLine();
+                Console.WriteLine("What is your Droid model? (Choose below)");
+                Console.WriteLine();
+                Console.WriteLine("1. {0}.", "Protocol");
+                Console.WriteLine("2. {0}.", "Utility");
+                Console.WriteLine("3. {0}.", "Janitor");
+                Console.WriteLine("4. {0}.", "Astromech");
+                Console.WriteLine("5. Exit.");
+            
         }
 
+        //
         private void MenuMaterialOptions()
         {
             Console.WriteLine();
             Console.WriteLine("What material? (Choose below)");
             Console.WriteLine();
-            Console.WriteLine("1. {0}", Material[0]);
-            Console.WriteLine("2. {0}", Material[1]);
-            Console.WriteLine("3. {0}", Material[2]);
-            Console.WriteLine("4. {0}", Material[3]);
-            Console.WriteLine("5. {0}", Material[4]);
-            Console.WriteLine("6. Cancel.");
+            Console.WriteLine("1. {0}", "Titanium Gold");
+            Console.WriteLine("2. {0}", "Titanium");
+            Console.WriteLine("3. {0}", "Gold");
+            Console.WriteLine("4. {0}", "Silver");
+            Console.WriteLine("5. {0}", "Brass");
+            Console.WriteLine("6. Exit.");
         }
 
+
+        //
         private void MenuColorOptions()
         {
             Console.WriteLine();
             Console.WriteLine("What color? (Choose below)");
             Console.WriteLine();
-            Console.WriteLine("1. {0}", Color[0]);
-            Console.WriteLine("2. {0}", Color[1]);
-            Console.WriteLine("3. {0}", Color[2]);
-            Console.WriteLine("4. {0}", Color[3]);
-            Console.WriteLine("5. {0}", Color[4]);
-            Console.WriteLine("6. {0}", Color[5]);
-            Console.WriteLine("7. {0}", Color[6]);
-            Console.WriteLine("8. {0}", Color[7]);
-            Console.WriteLine("9. Cancel.");
+            Console.WriteLine("1. {0}", "Red");
+            Console.WriteLine("2. {0}", "Orange");
+            Console.WriteLine("3. {0}", "Blue");
+            Console.WriteLine("4. {0}", "Green");
+            Console.WriteLine("5. {0}", "Yellow");
+            Console.WriteLine("6. {0}", "WHite");
+            Console.WriteLine("7. {0}", "Black");
+            Console.WriteLine("8. {0}", "Purple");
+            Console.WriteLine("9. Exit.");
         }
 
         private void PromptMenu()
@@ -446,46 +469,44 @@ namespace cis237_assignment_3
             return value;
         }
 
+        //
+        //private string GetStringModelField(string fieldName)
+        //{
+        //    string value = null;
+        //    bool valid = false;
+        //    while (!valid)
+        //    {
+        //        value = this.DisplayDroidMenuAndGetUserInput().ToString();
+
+        //        if (!!String.IsNullOrEmpty(value))
+        //        {
+        //            valid = true;
+        //        }
+        //        else
+        //        {
+        //            Console.ForegroundColor = ConsoleColor.Red;
+        //            Console.WriteLine("You must provide an entry.");
+        //            Console.ForegroundColor = ConsoleColor.Gray;
+        //            Console.WriteLine();
+        //            Console.WriteLine("What is the new Droid's {0}", fieldName);
+        //            Console.Write("> ");
+        //        }
+        //    }
+        //    return value;
+        //}
+
+        //
         private string GetStringMaterialField(string fieldName)
         {
-            this.MenuMaterialOptions();
-            Console.WriteLine("What is the new Droid's {0}", fieldName);
             string value = null;
             bool valid = false;
             while (!valid)
             {
-                value = Console.ReadLine();
-                if (ValidMaterialSelection(value))
+                value = this.DisplayMaterialMenuAndGetUserInput().ToString();
+
+                if (!String.IsNullOrEmpty(value))
                 {
-                    if (value == "1")
-                    {
-                        valid = true;
-                        value = Material[0];
-                    }
-                    else if (value == "2")
-                    {
-                        valid = true;
-                        value = Material[1];
-                    }
-                    else if (value == "3")
-                    {
-                        valid = true;
-                        value = Material[2];
-                    }
-                    else if (value == "4")
-                    {
-                        valid = true;
-                        value = Material[3];
-                    }
-                    else if (value == "5")
-                    {
-                        valid = true;
-                        value = Material[4];
-                    }
-                    else if (value == "6")
-                    {
-                        break;
-                    }
+                    valid = true;
                 }
                 else
                 {
@@ -502,59 +523,15 @@ namespace cis237_assignment_3
 
         private string GetStringColorField(string fieldName)
         {
-            this.MenuColorOptions();
-            Console.WriteLine("What is the new Droid's {0}", fieldName);
             string value = null;
             bool valid = false;
             while (!valid)
             {
-                value = Console.ReadLine();
-                if (ValidMaterialSelection(value))
+                value = DisplayColorMenuAndGetUserInput().ToString();
+
+                if (!String.IsNullOrWhiteSpace(value))
                 {
-                    if (value == "1")
-                    {
-                        valid = true;
-                        value = Color[0];
-                    }
-                    else if (value == "2")
-                    {
-                        valid = true;
-                        value = Color[1];
-                    }
-                    else if (value == "3")
-                    {
-                        valid = true;
-                        value = Color[2];
-                    }
-                    else if (value == "4")
-                    {
-                        valid = true;
-                        value = Color[3];
-                    }
-                    else if (value == "5")
-                    {
-                        valid = true;
-                        value = Color[4];
-                    }
-                    else if (value == "6")
-                    {
-                        valid = true;
-                        value = Color[5];
-                    }
-                    else if (value == "7")
-                    {
-                        valid = true;
-                        value = Color[6];
-                    }
-                    else if (value == "8")
-                    {
-                        valid = true;
-                        value = Color[7];
-                    }
-                    else if (value == "9")
-                    {
-                        break;
-                    }
+                    valid = true;
                 }
                 else
                 {
@@ -566,7 +543,7 @@ namespace cis237_assignment_3
                     Console.Write("> ");
                 }
             }
-            return value.ToString();
+            return value;
         }
 
         //

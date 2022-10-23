@@ -36,10 +36,8 @@ namespace cis237_assignment_3
         
         public new string Model
         {
-            get 
-            { 
-                return droidName[1]; 
-            }
+            get { return droidName[1]; }
+            set { droidName[1] = value; }
         }
 
         //
