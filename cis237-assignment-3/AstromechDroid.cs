@@ -29,12 +29,6 @@ namespace cis237_assignment_3
             set { _numberShips = value; }
         }
 
-        public new string Model
-        {
-            get { return droidName[3]; }
-            set { droidName[3] = value; }
-        }
-
         //
         public override string ToString()
         {

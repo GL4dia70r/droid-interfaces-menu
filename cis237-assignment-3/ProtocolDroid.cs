@@ -21,12 +21,6 @@ namespace cis237_assignment_3
             set { _numberLanguages = value; }
         }
 
-        public new string Model
-        {
-            get { return droidName[0]; }
-            set { droidName[0] = value; }
-        }
-
         //
         public override string ToString()
         {

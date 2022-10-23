@@ -14,7 +14,7 @@ namespace cis237_assignment_3
     {
         Droid[] droids;
         
-        const int MAX_MENU_CHOICES = 4;
+        const int MAX_MENU_CHOICES = 3;
         const int MAX_DROIDMENU_CHOICES = 5;
         const int MAX_MATERIALMENU_CHOICES = 6;
         const int MAX_COLORMENU_CHOICES = 9;
@@ -127,7 +127,7 @@ namespace cis237_assignment_3
                 selection = this.GetUserOption();
             }
             // Return user selection and cast into an integer via '.Parse()'.
-            return int.Parse(selection);
+            return int.Parse(selection) + 1;
 
         }
 
@@ -156,7 +156,7 @@ namespace cis237_assignment_3
                 selection = this.GetUserOption();
             }
             // Return user selection and cast into an integer via '.Parse()'.
-            return int.Parse(selection);
+            return int.Parse(selection) + 1;
 
         }
 
@@ -164,8 +164,8 @@ namespace cis237_assignment_3
         public string[] GetNewProtocolDroidInformation()
         {
             string Model = null;
-            string Material = this.GetStringMaterialField("Material");
-            string Color = this.GetStringColorField("Color");
+            string Material = this.DisplayMaterialMenuAndGetUserInput().ToString();
+            string Color = this.DisplayColorMenuAndGetUserInput().ToString();
             string NumberLanguages = this.GetIntField("Number Of Languages");
 
             return new string[] { Model, Material, Color, NumberLanguages };
@@ -175,8 +175,8 @@ namespace cis237_assignment_3
         public string[] GetNewUtilityDroidInformation()
         {
             string Model = null;
-            string Material = this.GetStringMaterialField("Material");
-            string Color = this.GetStringColorField("Color");
+            string Material = this.DisplayMaterialMenuAndGetUserInput().ToString();
+            string Color = this.DisplayColorMenuAndGetUserInput().ToString();
             string ToolBox = this.GetBoolField("ToolBox");
             string ComputerConnection = this.GetBoolField("Computer Connection");
             string Scanner = this.GetBoolField("Scanner");
@@ -188,8 +188,8 @@ namespace cis237_assignment_3
         public string[] GetNewJanitorDroidInformation()
         {
             string Model = null;
-            string Material = this.GetStringMaterialField("Material");
-            string Color = this.GetStringColorField("Color");
+            string Material = this.DisplayMaterialMenuAndGetUserInput().ToString();
+            string Color = this.DisplayColorMenuAndGetUserInput().ToString();
             string TrashCompactor = this.GetBoolField("Trash Compactor");
             string Vacuum = this.GetBoolField("Vacuum");
             string ToolBox = this.GetBoolField("ToolBox");
@@ -205,8 +205,8 @@ namespace cis237_assignment_3
         public string[] GetNewAstromechDroidInformation()
         {
             string Model = null;
-            string Material = this.GetStringMaterialField("Material");
-            string Color = this.GetStringColorField("Color");
+            string Material = this.DisplayMaterialMenuAndGetUserInput().ToString();
+            string Color = this.DisplayColorMenuAndGetUserInput().ToString();
             string ToolBox = this.GetBoolField("ToolBox");
             string ComputerConnection = this.GetBoolField("Computer Connection");
             string Scanner = this.GetBoolField("Scanner");
@@ -264,8 +264,7 @@ namespace cis237_assignment_3
             Console.WriteLine();
             Console.WriteLine("1. Add a Droid to list.");
             Console.WriteLine("2. Print current Droid list.");
-            Console.WriteLine("3. Search for a Droid on the list.");
-            Console.WriteLine("4. Exit.");
+            Console.WriteLine("3. Exit.");
         }
 
         //
@@ -279,7 +278,7 @@ namespace cis237_assignment_3
                 Console.WriteLine("2. {0}.", "Utility");
                 Console.WriteLine("3. {0}.", "Janitor");
                 Console.WriteLine("4. {0}.", "Astromech");
-                Console.WriteLine("5. Exit.");
+                Console.WriteLine("5. Cancel.");
             
         }
 
@@ -294,7 +293,7 @@ namespace cis237_assignment_3
             Console.WriteLine("3. {0}", "Gold");
             Console.WriteLine("4. {0}", "Silver");
             Console.WriteLine("5. {0}", "Brass");
-            Console.WriteLine("6. Exit.");
+            Console.WriteLine("6. None.");
         }
 
 
@@ -312,7 +311,7 @@ namespace cis237_assignment_3
             Console.WriteLine("6. {0}", "WHite");
             Console.WriteLine("7. {0}", "Black");
             Console.WriteLine("8. {0}", "Purple");
-            Console.WriteLine("9. Exit.");
+            Console.WriteLine("9. None.");
         }
 
         private void PromptMenu()
@@ -327,6 +326,7 @@ namespace cis237_assignment_3
             Console.WriteLine();
             Console.ForegroundColor = ConsoleColor.Red;
             Console.WriteLine("That is not a valid entry. Please make a valid entry...");
+            Console.ForegroundColor= ConsoleColor.Gray;
         }
 
         //

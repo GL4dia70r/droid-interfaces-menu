@@ -137,7 +137,7 @@ namespace cis237_assignment_3
             foreach (Droid model in droids)
             {
                 //
-                if (model.Model != null)
+                if (model.CalculateTotalCost != null)
                 {
                     userReturnString += model.ToString() +
                         Environment.NewLine;
@@ -147,33 +147,33 @@ namespace cis237_assignment_3
             return userReturnString;
         }
 
-        public string FindDroid(string model)
-        {
-            string outputString = null;
+        //public string FindDroid(string model)
+        //{
+        //    string outputString = null;
             
-            foreach (Droid droid in droids)
-            {
-                if (droids == null)
-                {
-                    if (droid.Model[0] == model)
-                    {
-                        outputString = droid.ToString();
-                    }
-                    else if (droid.Model[1] == model)
-                    {
-                        outputString = droid.ToString();
-                    }
-                    else if (droid.Model[2] == model)
-                    {
-                        outputString = droid.ToString();
-                    }
-                    else if (droid.Model[3] == model)
-                    {
-                        outputString = droid.ToString();
-                    }
-                }
-            }
-            return outputString;
-        }
+        //    foreach (Droid droid in droids)
+        //    {
+        //        if (droids != null)
+        //        {
+        //            if (droid.Model[0] != model)
+        //            {
+        //                outputString = droid.ToString();
+        //            }
+        //            else if (droid.Model[1] != model)
+        //            {
+        //                outputString = droid.ToString();
+        //            }
+        //            else if (droid.Model[2] != model)
+        //            {
+        //                outputString = droid.ToString();
+        //            }
+        //            else if (droid.Model[3] != model)
+        //            {
+        //                outputString = droid.ToString();
+        //            }
+        //        }
+        //    }
+        //    return outputString;
+        //}
     }
 }

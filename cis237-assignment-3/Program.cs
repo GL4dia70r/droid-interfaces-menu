@@ -17,9 +17,9 @@ namespace cis237_assignment_3
             const int droidCollectionSize = 100;
             
             IDroid[] model = new Droid[droidCollectionSize];
-            ProtocolDroid[] protocol = new ProtocolDroid[droidCollectionSize];
-            UtilityDroid[] utility = new UtilityDroid[droidCollectionSize];
-            JanitorDroid[] janitors = new JanitorDroid[droidCollectionSize];
+            ProtocolDroid[] protocol = new ProtocolDroid[4];
+            UtilityDroid[] utility = new UtilityDroid[4];
+            JanitorDroid[] janitors = new JanitorDroid[4];
 
 
             DroidCollection droidCollection = new DroidCollection(droidCollectionSize);
@@ -28,7 +28,7 @@ namespace cis237_assignment_3
 
             int choice = ui.DisplayMenuAndGetUserInput();
 
-            while (choice != 5)
+            while (choice != 3)
             {
                 switch (choice)
                 {
@@ -41,30 +41,40 @@ namespace cis237_assignment_3
                             switch (droidChoice)
                             {
                                 case 1:
-                                    string[] newDroidInformation = ui.GetNewProtocolDroidInformation();
-                                    if (droidCollection.FindDroid(newDroidInformation[0]) == null)
+                                    
+                                    if (droidChoice == 1)
                                     {
+                                        string[] newDroidInformation = ui.GetNewProtocolDroidInformation();
+
+                                        newDroidInformation[0] = "Protocol";
+
                                         droidCollection.AddNewProtocolDroid(
-                                                newDroidInformation[0] = "Protocol",
+                                                newDroidInformation[0],
                                                 newDroidInformation[1],
                                                 newDroidInformation[2],
                                                 int.Parse(newDroidInformation[3])
 
                                             );
                                         ui.DisplayAddDroidSuccess();
+                                        break;
                                     }
                                     else
                                     {
                                         ui.DisplayDroidAlreadyExistsError();
                                     }
+
                                     break;
 
                                 case 2:
-                                    string[] newDroidInformation1 = ui.GetNewUtilityDroidInformation();
-                                    if (droidCollection.FindDroid(newDroidInformation1[0]) == null)
+                                    
+                                    if (droidChoice == 2)
                                     {
+                                        string[] newDroidInformation1 = ui.GetNewUtilityDroidInformation();
+
+                                        newDroidInformation1[0] = "Utility";
+
                                         droidCollection.AddNewUtilityDroid(
-                                                newDroidInformation1[0] = "Utility",
+                                                newDroidInformation1[0],
                                                 newDroidInformation1[1],
                                                 newDroidInformation1[2],
                                                 bool.Parse(newDroidInformation1[3]),
@@ -74,6 +84,7 @@ namespace cis237_assignment_3
 
 
                                         ui.DisplayAddDroidSuccess();
+                                        break;
                                     }
                                     else
                                     {
@@ -82,11 +93,15 @@ namespace cis237_assignment_3
                                     break;
 
                                 case 3:
-                                    string[] newDroidInformation2 = ui.GetNewJanitorDroidInformation();
-                                    if (droidCollection.FindDroid(newDroidInformation2[0]) == null)
+                                    
+                                    if (droidChoice == 3)
                                     {
+                                        string[] newDroidInformation2 = ui.GetNewJanitorDroidInformation();
+
+                                        newDroidInformation2[0] = "Janitor";
+
                                         droidCollection.AddNewJanitorDroid(
-                                                   newDroidInformation2[0] = "Janitor",
+                                                   newDroidInformation2[0],
                                                    newDroidInformation2[1],
                                                    newDroidInformation2[2],
                                                    bool.Parse(newDroidInformation2[3]),
@@ -98,6 +113,7 @@ namespace cis237_assignment_3
 
 
                                         ui.DisplayAddDroidSuccess();
+                                        break;
                                     }
                                     else
                                     {
@@ -106,11 +122,15 @@ namespace cis237_assignment_3
                                     break;
 
                                 case 4:
-                                    string[] newDroidInformation3 = ui.GetNewAstromechDroidInformation();
-                                    if (droidCollection.FindDroid(newDroidInformation3[0]) == null)
+                                    
+                                    if (droidChoice == 4)
                                     {
+                                        string[] newDroidInformation3 = ui.GetNewAstromechDroidInformation();
+
+                                        newDroidInformation3[0] = "Astromech";
+
                                         droidCollection.AddNewAstromechDroid(
-                                                newDroidInformation3[0] = "Astromech",
+                                                newDroidInformation3[0],
                                                 newDroidInformation3[1],
                                                 newDroidInformation3[2],
                                                 bool.Parse(newDroidInformation3[3]),
@@ -119,9 +139,8 @@ namespace cis237_assignment_3
                                                 bool.Parse(newDroidInformation3[6]),
                                                 int.Parse(newDroidInformation3[7])
                                         );
-
-
                                         ui.DisplayAddDroidSuccess();
+                                        break;
                                     }
                                     else
                                     {

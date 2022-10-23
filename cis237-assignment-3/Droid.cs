@@ -21,14 +21,6 @@ namespace cis237_assignment_3
         protected const decimal COST_PER_MATERIAL = 500m;
         protected const decimal COST_PER_COLOR = 10m;
 
-        protected string[] droidName =
-        {
-            "Protocol",
-            "Utility",
-            "Janitor",
-            "Astromech"
-        };
-
         private string _droidMaterial;
         private string _droidColor;
         private decimal _baseCost;
@@ -60,22 +52,13 @@ namespace cis237_assignment_3
             get { return this._totalCost; }
             set { this._totalCost = BaseCost; }
         }
-
-        public string[] Model
-        {
-            get { return droidName; }
-            set { droidName = value; }
-        }
-
         /// <summary>
         ///             -  Methods for droid properties.
         /// </summary>
         /// <returns>ToString of variables Material and Color</returns>
         public override string ToString()
         {
-            return $"Model: {Model}" +
-                Environment.NewLine +
-                $"Material: {Material}" +
+            return $"Material: {Material}" +
                 Environment.NewLine +
                 $"Color: {Color}" +
                 Environment.NewLine +

@@ -33,12 +33,6 @@ namespace cis237_assignment_3
             get { return _scanner; }
             set { _scanner = value; }
         }
-        
-        public new string Model
-        {
-            get { return droidName[1]; }
-            set { droidName[1] = value; }
-        }
 
         //
         public override string ToString()
