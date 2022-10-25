@@ -29,19 +29,15 @@ namespace cis237_assignment_3
         //
         public override string ToString()
         {
-            return $"{base.ToString()}" +
-                Environment.NewLine + 
-                $"{TrashCompactor}" +
-                Environment.NewLine + 
-                $"{Vacuum}";
+            return $"{base.ToString()} {TrashCompactor} {Vacuum} {this.CalculateBaseCost()}";
         }
 
-        public override void CalculateTotalCost()
+        public virtual new void CalculateTotalCost()
         {
-            this.TotalCost = base.CalculateBaseCost() + this.CalculateOptionCost();
+            this.TotalCost = base.CalculateBaseCost() + this.CalculateBaseCost();
         }
 
-        protected new decimal CalculateOptionCost()
+        public virtual new decimal CalculateBaseCost()
         {
             decimal OptionCost = 0m;
 

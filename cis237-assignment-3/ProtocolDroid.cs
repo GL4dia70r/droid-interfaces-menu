@@ -32,6 +32,19 @@ namespace cis237_assignment_3
             this.TotalCost = base.CalculateBaseCost() + NumberLanguages * COST_PER_LANGUAGE;
         }
 
+        protected virtual new decimal CalculateBaseCost()
+        {
+            if (NumberLanguages >= 1)
+            {
+                this.BaseCost = NumberLanguages * COST_PER_LANGUAGE;
+            }
+            else
+            {
+                this.BaseCost = 0;
+            }
+            return this.BaseCost;
+        }
+
         //
         public ProtocolDroid(
             string Model,

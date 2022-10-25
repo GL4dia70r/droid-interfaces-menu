@@ -37,16 +37,14 @@ namespace cis237_assignment_3
         
         public override void CalculateTotalCost()
         {
-            this.TotalCost = base.CalculateBaseCost() + this.CalculateOptionCost();
+            this.TotalCost = base.CalculateBaseCost() + this.CalculateBaseCost();
         }
 
-        protected new virtual decimal CalculateOptionCost()
+        protected virtual new decimal CalculateBaseCost()
         {
             decimal OptionCost = 0m;
 
-            if (
-                Navigation
-            )
+            if (Navigation)
             {
                 OptionCost = 1m;
             }

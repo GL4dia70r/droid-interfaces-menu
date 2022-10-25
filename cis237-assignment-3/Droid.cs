@@ -65,7 +65,7 @@ namespace cis237_assignment_3
         /// <returns>ToString of variables Material and Color</returns>
         public override string ToString()
         {
-            return $"{Model} {Material} {Color, 12} {BaseCost} {TotalCost}";
+            return $"{Model} {Material} {Color, 12} {this.BaseCost} {this.TotalCost}";
         }
 
         public virtual void CalculateTotalCost()
@@ -81,7 +81,7 @@ namespace cis237_assignment_3
             }
             else
             {
-                this.BaseCost = COST_PER_MATERIAL * 0 + COST_PER_COLOR * 0;
+                this.BaseCost = 0;
             }
             return this.BaseCost;
         }

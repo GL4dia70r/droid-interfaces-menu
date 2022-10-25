@@ -10,9 +10,8 @@ using System.Xml;
 
 namespace cis237_assignment_3
 {
-    internal class JawaUserInterface
+    internal class JawaUserInterface : Droid
     {
-        Droid[] droids;
         
         const int MAX_MENU_CHOICES = 3;
         const int MAX_DROIDMENU_CHOICES = 5;
@@ -426,109 +425,6 @@ namespace cis237_assignment_3
             return givenValue;
         }
 
-        ////
-        //private string GetStringField(string fieldName)
-        //{
-        //    Console.WriteLine("What is the new Droid's {0}", fieldName);
-        //    string value = null;
-        //    bool valid = false;
-        //    while(!valid)
-        //    {
-        //        value = Console.ReadLine();
-        //        if (!String.IsNullOrWhiteSpace(value))
-        //        {
-        //            valid = true;
-        //        }
-        //        else
-        //        {
-        //            Console.ForegroundColor = ConsoleColor.Red;
-        //            Console.WriteLine("You must provide an entry.");
-        //            Console.ForegroundColor = ConsoleColor.Gray;
-        //            Console.WriteLine();
-        //            Console.WriteLine("What is the new Droid's {0}", fieldName);
-        //            Console.Write("> ");
-        //        }
-        //    }
-        //    return value;
-        //}
-
-        //
-        //private string GetStringModelField(string fieldName)
-        //{
-        //    string value = null;
-        //    bool valid = false;
-        //    while (!valid)
-        //    {
-        //        value = this.DisplayDroidMenuAndGetUserInput().ToString();
-
-        //        if (!!String.IsNullOrEmpty(value))
-        //        {
-        //            valid = true;
-        //        }
-        //        else
-        //        {
-        //            Console.ForegroundColor = ConsoleColor.Red;
-        //            Console.WriteLine("You must provide an entry.");
-        //            Console.ForegroundColor = ConsoleColor.Gray;
-        //            Console.WriteLine();
-        //            Console.WriteLine("What is the new Droid's {0}", fieldName);
-        //            Console.Write("> ");
-        //        }
-        //    }
-        //    return value;
-        //}
-
-        ////
-        //private string GetStringMaterialField(string fieldName)
-        //{
-        //    string value = null;
-        //    bool valid = false;
-        //    while (!valid)
-        //    {
-        //        value = this.DisplayMaterialMenuAndGetUserInput().ToString();
-
-        //        if (!String.IsNullOrEmpty(value))
-        //        {
-        //            valid = true;
-        //        }
-        //        else
-        //        {
-        //            Console.ForegroundColor = ConsoleColor.Red;
-        //            Console.WriteLine("You must provide an entry.");
-        //            Console.ForegroundColor = ConsoleColor.Gray;
-        //            Console.WriteLine();
-        //            Console.WriteLine("What is the new Droid's {0}", fieldName);
-        //            Console.Write("> ");
-        //        }
-        //    }
-        //    return value.ToString();
-        //}
-
-        //private string GetStringColorField(string fieldName)
-        //{
-        //    string value = null;
-        //    bool valid = false;
-        //    while (!valid)
-        //    {
-        //        value = DisplayColorMenuAndGetUserInput().ToString();
-
-        //        if (!String.IsNullOrWhiteSpace(value))
-        //        {
-        //            valid = true;
-        //        }
-        //        else
-        //        {
-        //            Console.ForegroundColor = ConsoleColor.Red;
-        //            Console.WriteLine("You must provide an entry.");
-        //            Console.ForegroundColor = ConsoleColor.Gray;
-        //            Console.WriteLine();
-        //            Console.WriteLine("What is the new Droid's {0}", fieldName);
-        //            Console.Write("> ");
-        //        }
-        //    }
-        //    return value;
-        //}
-
         //
         private string GetMaterialFieldValueConversion(string value)
         {
@@ -537,35 +433,43 @@ namespace cis237_assignment_3
             bool valid = false;
             while (!valid)
             {
-                try
+                if (value == "1")
                 {
-                    if (value == "1")
-                    {
-                        field = names[0];
-                        valid = true;
-                    }
-                    else if (value == "2")
-                    {
-                        field = names[1];
-                        valid = true;
-                    }
-                    else if (value == "3")
-                    {
-                        field = names[2];
-                        valid = true;
-                    }
-                    else if (value == "4")
-                    {
-                        field = names[3];
-                        valid = true;
-                    }
+                    field = names[0];
+                    valid = true;
                 }
-                catch (Exception)
+                else if (value == "2")
+                {
+                    field = names[1];
+                    valid = true;
+                }
+                else if (value == "3")
+                {
+                    field = names[2];
+                    valid = true;
+                }
+                else if (value == "4")
+                {
+                    field = names[3];
+                    valid = true;
+                }
+                else if (value == "5")
+                {
+                    field = names[4];
+                    valid = true;
+                }
+                else if (value == "6")
+                {
+                    field = "N/A";
+                    valid = true;
+                }
+                else
                 {
                     Console.ForegroundColor = ConsoleColor.Red;
                     Console.WriteLine("That is not a valid entry. Please enter a valid entry.");
                     Console.ForegroundColor = ConsoleColor.Gray;
                 }
+                return field;
             }
 
             return field;
@@ -579,55 +483,58 @@ namespace cis237_assignment_3
             bool valid = false;
             while (!valid)
             {
-                try
+                if (value == "1")
                 {
-                    if (value == "1")
-                    {
-                        field = names[0];
-                        valid = true;
-                    }
-                    else if (value == "2")
-                    {
-                        field = names[1];
-                        valid = true;
-                    }
-                    else if (value == "3")
-                    {
-                        field = names[2];
-                        valid = true;
-                    }
-                    else if (value == "4")
-                    {
-                        field = names[3];
-                        valid = true;
-                    }
-                    else if (value == "5")
-                    {
-                        field = names[4];
-                        valid = true;
-                    }
-                    else if (value == "6")
-                    {
-                        field = names[5];
-                        valid = true;
-                    }
-                    else if (value == "7")
-                    {
-                        field = names[6];
-                        valid = true;
-                    }
-                    else if (value == "8")
-                    {
-                        value = names[7];
-                        valid = true;
-                    }
+                    field = names[0];
+                    valid = true;
                 }
-                catch (Exception)
+                else if (value == "2")
+                {
+                    field = names[1];
+                    valid = true;
+                }
+                else if (value == "3")
+                {
+                    field = names[2];
+                    valid = true;
+                }
+                else if (value == "4")
+                {
+                    field = names[3];
+                    valid = true;
+                }
+                else if (value == "5")
+                {
+                    field = names[4];
+                    valid = true;
+                }
+                else if (value == "6")
+                {
+                    field = names[5];
+                    valid = true;
+                }
+                else if (value == "7")
+                {
+                    field = names[6];
+                    valid = true;
+                }
+                else if (value == "8")
+                {
+                    value = names[7];
+                    valid = true;
+                }
+                else if (value == "9")
+                {
+                    field = "N/A";
+                    valid = true;
+                }
+                else
                 {
                     Console.ForegroundColor = ConsoleColor.Red;
                     Console.WriteLine("That is not a valid entry. Please enter a valid entry.");
                     Console.ForegroundColor = ConsoleColor.Gray;
                 }
+                return field;
             }
 
             return field;
@@ -697,6 +604,8 @@ namespace cis237_assignment_3
                 "Model",
                 "Material",
                 "Color", 
+                "Cost",
+                "Total",
                 "Number Of Languages",
                 "ToolBox",
                 "Computer Connection",
@@ -704,8 +613,7 @@ namespace cis237_assignment_3
                 "Trash Compactor",
                 "Vacuum",
                 "Navigation",
-                "Number Of Ships",
-                "Total Cost"
+                "Number Of Ships"
                 ) +
             Environment.NewLine +
             String.Format(
@@ -713,6 +621,7 @@ namespace cis237_assignment_3
                 new String('-', 12),
                 new String('-', 12),
                 new String('-', 7),
+                new String('-', 10),
                 new String('-', 26),
                 new String('-', 10),
                 new String('-', 26),
