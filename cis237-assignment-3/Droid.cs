@@ -21,6 +21,7 @@ namespace cis237_assignment_3
         protected const decimal COST_PER_MATERIAL = 500m;
         protected const decimal COST_PER_COLOR = 10m;
 
+        private string _droidModel;
         private string _droidMaterial;
         private string _droidColor;
         private decimal _baseCost;
@@ -29,6 +30,12 @@ namespace cis237_assignment_3
         /// <summary>
         ///             - Properties
         /// </summary>
+        public string Model
+        {
+            get { return _droidModel; }
+            set { _droidModel = value; }
+        }
+
         public string Material
         {
             get { return _droidMaterial; }
@@ -58,7 +65,7 @@ namespace cis237_assignment_3
         /// <returns>ToString of variables Material and Color</returns>
         public override string ToString()
         {
-            return $"{Material} {Color, 12} {CalculateBaseCost()}";
+            return $"{Model} {Material} {Color, 12} {BaseCost} {TotalCost}";
         }
 
         public virtual void CalculateTotalCost()
@@ -85,10 +92,12 @@ namespace cis237_assignment_3
         /// <param name="Material">- variable that holds the Droid material. </param>
         /// <param name="Color">- varialbe that holds the Droid color. </param>
         public Droid(
+            string Model,
             string Material,
             string Color
         )
         {
+            this._droidModel = Model;
             this._droidMaterial = Material;
             this._droidColor = Color;
         }

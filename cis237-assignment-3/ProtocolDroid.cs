@@ -34,10 +34,11 @@ namespace cis237_assignment_3
 
         //
         public ProtocolDroid(
+            string Model,
             string Material,
             string Color,
             int NumberLanguages
-        ) : base(Material, Color)
+        ) : base(Model, Material, Color)
         {
             this._numberLanguages = NumberLanguages;
         }

@@ -74,14 +74,15 @@ namespace cis237_assignment_3
 
         //
         public JanitorDroid(
-            string Material,
-            string Color,
+            string Model,
+            string Material, 
+            string Color, 
             bool TrashCompactor, 
-            bool Vacuum,
-            bool ToolBox,
-            bool ComputerConnection,
+            bool Vacuum, 
+            bool ToolBox, 
+            bool ComputerConnection, 
             bool Scanner
-        ) : base(Material, Color, ToolBox, ComputerConnection, Scanner)
+        ) : base(Model, Material, Color, ToolBox, ComputerConnection, Scanner)
         {
             this._trashCompactor = TrashCompactor;
             this._vacuum = Vacuum;

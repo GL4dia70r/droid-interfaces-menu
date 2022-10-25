@@ -58,14 +58,15 @@ namespace cis237_assignment_3
         }
 
         public AstromechDroid(
-            string Material,
-            string Color,
-            bool ToolBox,
-            bool ComputerConnection,
-            bool Scanner,
-            bool Navigation,
+            string Model, 
+            string Material, 
+            string Color, 
+            bool ToolBox, 
+            bool ComputerConnection, 
+            bool Scanner, 
+            bool Navigation, 
             int NumberShips
-        ) : base(Material, Color, ToolBox, ComputerConnection, Scanner)
+        ) : base(Model, Material, Color, ToolBox, ComputerConnection, Scanner)
         {
             this._navigation = Navigation;
             this._numberShips = NumberShips;

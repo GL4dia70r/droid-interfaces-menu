@@ -100,12 +100,14 @@ namespace cis237_assignment_3
         /// <param name="ComputerConnection"></param>
         /// <param name="Scanner"></param>
         public UtilityDroid(
+            string Model,
             string Material,
             string Color,
             bool ToolBox,
             bool ComputerConnection,
             bool Scanner
-        ) : base(Material, Color)
+        ) : base(Model, Material, Color)
+
         {
             this._toolBox = ToolBox;
             this._computerConnection = ComputerConnection;

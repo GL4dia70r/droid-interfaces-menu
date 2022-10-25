@@ -42,6 +42,7 @@ namespace cis237_assignment_3
         {
             //
             droids[droidsLength] = new ProtocolDroid(
+                Model,
                 Material,
                 Color,
                 NumberLanguages
@@ -63,6 +64,7 @@ namespace cis237_assignment_3
         {
             //
             droids[droidsLength] = new UtilityDroid(
+                Model,
                 Material,
                 Color,
                 ToolBox,
@@ -88,6 +90,7 @@ namespace cis237_assignment_3
         {
             //
             droids[droidsLength] = new JanitorDroid(
+                Model,
                 Material,
                 Color,
                 TrashCompactor,
@@ -115,6 +118,7 @@ namespace cis237_assignment_3
         {
             //
             droids[droidsLength] = new AstromechDroid(
+                Model,
                 Material,
                 Color,
                 ToolBox,
@@ -153,7 +157,7 @@ namespace cis237_assignment_3
             
         //    foreach (Droid droid in droids)
         //    {
-        //        if (droids != null)
+        //        if (droids.Model != null)
         //        {
         //            if (droid.Model[0] != model)
         //            {
