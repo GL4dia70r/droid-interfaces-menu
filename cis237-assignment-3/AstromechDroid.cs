@@ -65,10 +65,8 @@ namespace cis237_assignment_3
             bool ComputerConnection, 
             bool Scanner, 
             bool Navigation, 
-            int NumberShips,
-            decimal BaseCost,
-            decimal TotalCost
-        ) : base(Model, Material, Color, ToolBox, ComputerConnection, Scanner, BaseCost, TotalCost)
+            int NumberShips
+        ) : base(Model, Material, Color, ToolBox, ComputerConnection, Scanner)
         {
             this._navigation = Navigation;
             this._numberShips = NumberShips;

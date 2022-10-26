@@ -45,11 +45,8 @@ namespace cis237_assignment_3
                 Model,
                 Material,
                 Color,
-                NumberLanguages,
-                BaseCost,
-                TotalCost
+                NumberLanguages
             );
-
 
             droidsLength++;
         }
@@ -71,9 +68,7 @@ namespace cis237_assignment_3
                 Color,
                 ToolBox,
                 ComputerConnection,
-                Scanner,
-                BaseCost,
-                TotalCost
+                Scanner
             );
 
 
@@ -101,9 +96,7 @@ namespace cis237_assignment_3
                 Vacuum,
                 ToolBox,
                 ComputerConnection,
-                Scanner,
-                BaseCost,
-                TotalCost
+                Scanner
             );
 
 
@@ -131,9 +124,7 @@ namespace cis237_assignment_3
                 ComputerConnection,
                 Scanner,
                 Navigation,
-                NumberShips,
-                BaseCost,
-                TotalCost
+                NumberShips
             );
 
 

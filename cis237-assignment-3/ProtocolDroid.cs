@@ -14,6 +14,8 @@ namespace cis237_assignment_3
         //
         private int _numberLanguages;
 
+        public new string Model { get; set; }
+
         //
         public int NumberLanguages
         {
@@ -50,10 +52,8 @@ namespace cis237_assignment_3
             string Model,
             string Material,
             string Color,
-            int NumberLanguages,
-            decimal BaseCost,
-            decimal TotalCost
-        ) : base(Model, Material, Color, BaseCost, TotalCost)
+            int NumberLanguages
+        ) : base(Model, Material, Color)
         {
             this._numberLanguages = NumberLanguages;
         }

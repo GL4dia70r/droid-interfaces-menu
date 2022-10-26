@@ -15,6 +15,8 @@ namespace cis237_assignment_3
         private bool _computerConnection;
         private bool _scanner;
 
+        public new string Model { get; set; }
+
         //
         public bool ToolBox
         {
@@ -73,10 +75,8 @@ namespace cis237_assignment_3
             string Color,
             bool ToolBox,
             bool ComputerConnection,
-            bool Scanner,
-            decimal BaseCost,
-            decimal TotalCost
-        ) : base(Model, Material, Color, BaseCost, TotalCost )
+            bool Scanner
+        ) : base(Model, Material, Color)
 
         {
             this._toolBox = ToolBox;

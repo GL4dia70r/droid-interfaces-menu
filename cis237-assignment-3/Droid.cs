@@ -65,7 +65,7 @@ namespace cis237_assignment_3
         /// <returns>ToString of variables Material and Color</returns>
         public override string ToString()
         {
-            return $"{Model} {Material} {Color, 12} {TotalCost.ToString("C")}";
+            return $"{Model} {Material} {Color, 12}";
         }
 
         public virtual void CalculateTotalCost()
@@ -123,16 +123,12 @@ namespace cis237_assignment_3
         public Droid(
             string Model,
             string Material,
-            string Color,
-            decimal BaseCost,
-            decimal TotalCost
+            string Color
         )
         {
             this._droidModel = Model;
             this._droidMaterial = Material;
             this._droidColor = Color;
-            this._baseCost = BaseCost;
-            this._totalCost = TotalCost;
         }
 
         public Droid() 

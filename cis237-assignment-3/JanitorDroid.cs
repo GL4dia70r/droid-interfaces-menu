@@ -12,7 +12,9 @@ namespace cis237_assignment_3
         //
         private bool _trashCompactor;
         private bool _vacuum;
-        
+
+        public new string Model { get; set; }
+
         //
         public bool TrashCompactor
         {
@@ -61,13 +63,16 @@ namespace cis237_assignment_3
             bool Vacuum, 
             bool ToolBox, 
             bool ComputerConnection, 
-            bool Scanner,
-            decimal BaseCost,
-            decimal TotalCost
-        ) : base(Model, Material, Color, ToolBox, ComputerConnection, Scanner, BaseCost, TotalCost)
+            bool Scanner
+        ) : base(Model, Material, Color, ToolBox, ComputerConnection, Scanner)
         {
             this._trashCompactor = TrashCompactor;
             this._vacuum = Vacuum;
+        }
+
+        public JanitorDroid()
+        {
+            // Do Nothing
         }
     }
 }

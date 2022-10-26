@@ -2,6 +2,7 @@
 // 10/17/22 - 10//22
 // CIS237 - Assignment - 3
 using System;
+using System.Runtime.InteropServices;
 using System.Security.Cryptography;
 using System.Xml.Serialization;
 using cis237_assignment_3;
@@ -19,6 +20,14 @@ namespace cis237_assignment_3
             IDroid[] droids = new Droid[droidCollectionSize];
 
             DroidCollection droidCollection = new DroidCollection(droidCollectionSize);
+
+            ProtocolDroid droid1 = new ProtocolDroid();
+
+            UtilityDroid droid2 = new UtilityDroid();
+
+            JanitorDroid droid3 = new JanitorDroid();
+
+            AstromechDroid droid4 = new AstromechDroid();
 
             
 
@@ -50,9 +59,9 @@ namespace cis237_assignment_3
                                                     newDroidInformation[2],
                                                     int.Parse(newDroidInformation[3])
 
-                                                );
+                                        );
 
-                                            ui.DisplayAddDroidSuccess();
+                                        ui.DisplayAddDroidSuccess();
                                         
                                     }
                                     else
@@ -74,9 +83,9 @@ namespace cis237_assignment_3
                                                 bool.Parse(newDroidInformation1[3]),
                                                 bool.Parse(newDroidInformation1[4]),
                                                 bool.Parse(newDroidInformation1[5])
-                                                );
+                                        );
 
-                                            ui.DisplayAddDroidSuccess();
+                                        ui.DisplayAddDroidSuccess();
                                         
                                     }
                                     else
@@ -101,9 +110,9 @@ namespace cis237_assignment_3
                                                        bool.Parse(newDroidInformation2[5]),
                                                        bool.Parse(newDroidInformation2[6]),
                                                        bool.Parse(newDroidInformation2[7])
-                                                   );
+                                        );
 
-                                            ui.DisplayAddDroidSuccess();
+                                        ui.DisplayAddDroidSuccess();
                                         
                                     }
                                     else
@@ -118,18 +127,20 @@ namespace cis237_assignment_3
                                     {
                                         string[] newDroidInformation3 = ui.GetNewAstromechDroidInformation();
 
-                                            droidCollection.AddNewAstromechDroid(
-                                                    newDroidInformation3[0] = "Astromech",
-                                                    newDroidInformation3[1],
-                                                    newDroidInformation3[2],
-                                                    bool.Parse(newDroidInformation3[3]),
-                                                    bool.Parse(newDroidInformation3[4]),
-                                                    bool.Parse(newDroidInformation3[5]),
-                                                    bool.Parse(newDroidInformation3[6]),
-                                                    int.Parse(newDroidInformation3[7])
-                                            );
+                                        droidCollection.AddNewAstromechDroid(
+                                                newDroidInformation3[0] = "Astromech",
+                                                newDroidInformation3[1],
+                                                newDroidInformation3[2],
+                                                bool.Parse(newDroidInformation3[3]),
+                                                bool.Parse(newDroidInformation3[4]),
+                                                bool.Parse(newDroidInformation3[5]),
+                                                bool.Parse(newDroidInformation3[6]),
+                                                int.Parse(newDroidInformation3[7])
+                                        );
+                                        
+                                     
 
-                                            ui.DisplayAddDroidSuccess();
+                                        ui.DisplayAddDroidSuccess();
                                         
                                     }
                                     else
@@ -138,23 +149,22 @@ namespace cis237_assignment_3
                                     }
                                     break;
                             }
-                            //
+                            // recall Droid menu
                             droidChoice = ui.DisplayDroidMenuAndGetUserInput();
                         }
                         break;
                         
-
+                        // Print List
                     case 2:
                         string allDroidString = droidCollection.ToString();
                         if (!String.IsNullOrWhiteSpace(allDroidString))
                         {
                             ui.DisplayAllDroids(allDroidString);
-                            ui.GetDecimalField(droidCollection);
                         }
                         else
                         {
                             ui.DisplayAllDroidsError();
-                            
+
                         }
                         break;
                 }
