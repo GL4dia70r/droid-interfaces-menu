@@ -10,14 +10,14 @@ using System.Xml;
 
 namespace cis237_assignment_3
 {
-    internal class JawaUserInterface : Droid
+    internal class JawaUserInterface 
     {
-        
+
         const int MAX_MENU_CHOICES = 3;
         const int MAX_DROIDMENU_CHOICES = 5;
         const int MAX_MATERIALMENU_CHOICES = 6;
         const int MAX_COLORMENU_CHOICES = 9;
-        
+
         public void WelcomeGreeting()
         {
             Console.ForegroundColor = ConsoleColor.Yellow;
@@ -163,6 +163,7 @@ namespace cis237_assignment_3
             string ComputerConnection = this.GetBoolField("Computer Connection");
             string Scanner = this.GetBoolField("Scanner");
 
+
             return new string[] { Model, Material, Color, ToolBox, ComputerConnection, Scanner };
         }
 
@@ -194,6 +195,7 @@ namespace cis237_assignment_3
             string Scanner = this.GetBoolField("Scanner");
             string Navigation = this.GetBoolField("Navigation");
             string NumberShips = this.GetIntField("Number Of Ships");
+
 
             return new string[] { Model, Material, Color, ToolBox, ComputerConnection, Scanner, Navigation, NumberShips };
         }
@@ -541,6 +543,23 @@ namespace cis237_assignment_3
         }
 
         //
+        public string GetDecimalField(Droid droids)
+        {
+
+            if (droids.TotalCost >= 0)
+            {
+                droids.CalculateTotalCost();
+            }
+            else
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("Cost was not loaded...");
+                Console.ForegroundColor = ConsoleColor.Gray;
+            }
+            return droids.TotalCost.ToString("C");
+        }
+
+        //
         private string GetIntField(string fieldName)
         {
             Console.WriteLine("How many {0}", fieldName);
@@ -551,7 +570,11 @@ namespace cis237_assignment_3
                 try
                 {
                     value = int.Parse(Console.ReadLine());
-                    valid = true;
+
+                    if (value >= 0)
+                    {
+                        valid = true;
+                    }
                 }
                 catch (Exception)
                 {

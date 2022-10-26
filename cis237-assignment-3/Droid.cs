@@ -65,12 +65,12 @@ namespace cis237_assignment_3
         /// <returns>ToString of variables Material and Color</returns>
         public override string ToString()
         {
-            return $"{Model} {Material} {Color, 12} {this.CalculateTotalCost()}";
+            return $"{Model} {Material} {Color, 12} {TotalCost.ToString("C")}";
         }
 
         public virtual void CalculateTotalCost()
         {
-            this.CalculateBaseCost();
+            this.TotalCost = this.CalculateBaseCost();
         }
 
         protected decimal CalculateBaseCost()
@@ -86,6 +86,35 @@ namespace cis237_assignment_3
             return this.BaseCost;
         }
 
+        //
+        protected decimal GetBoolCost(bool field, decimal value)
+        {
+            if (field == true)
+            {
+                this.BaseCost = 1 * value;
+            }
+            else if (field == false)
+            {
+                this.BaseCost = 0 * value;
+
+            }
+            return this.BaseCost;
+        }
+
+        //
+        protected decimal GetNumberedCosts(int value, decimal value2)
+        {
+            if (value >= 1)
+            {
+                this.BaseCost = value * value2;
+            }
+            else if (value == 0)
+            {
+                this.BaseCost = value * value2;
+            }
+            return this.BaseCost;
+        }
+
         /// <summary>
         ///             -  Droid Constructor with two parameters both string.
         /// </summary>
@@ -94,12 +123,16 @@ namespace cis237_assignment_3
         public Droid(
             string Model,
             string Material,
-            string Color
+            string Color,
+            decimal BaseCost,
+            decimal TotalCost
         )
         {
             this._droidModel = Model;
             this._droidMaterial = Material;
             this._droidColor = Color;
+            this._baseCost = BaseCost;
+            this._totalCost = TotalCost;
         }
 
         public Droid() 

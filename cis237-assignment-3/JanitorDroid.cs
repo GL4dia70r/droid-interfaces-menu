@@ -26,6 +26,10 @@ namespace cis237_assignment_3
             set { _vacuum = value; }
         }
 
+        public new decimal BaseCost { get; set; }
+
+        public new decimal TotalCost { get; set; }
+
         //
         public override string ToString()
         {
@@ -39,20 +43,12 @@ namespace cis237_assignment_3
 
         public virtual new decimal CalculateBaseCost()
         {
-            bool[] options = { TrashCompactor, Vacuum };
+           BaseCost =  this.GetBoolCost(ToolBox, COST_PER_OPTION) +
+            this.GetBoolCost(ComputerConnection, COST_PER_OPTION) + 
+            this.GetBoolCost(Scanner, COST_PER_OPTION) +
+            this.GetBoolCost(TrashCompactor, COST_PER_OPTION) +
+            this.GetBoolCost(Vacuum, COST_PER_OPTION);
 
-            if (options[0] || options[1])
-            {
-                this.BaseCost = 1m * COST_PER_OPTION;
-            }
-            else if (options[0] && options[1])
-            {
-                this.BaseCost = 2m * COST_PER_OPTION;
-            }
-            else
-            {
-                this.BaseCost = 0m * COST_PER_OPTION;
-            }
             return this.BaseCost;
         }
 
@@ -65,8 +61,10 @@ namespace cis237_assignment_3
             bool Vacuum, 
             bool ToolBox, 
             bool ComputerConnection, 
-            bool Scanner
-        ) : base(Model, Material, Color, ToolBox, ComputerConnection, Scanner)
+            bool Scanner,
+            decimal BaseCost,
+            decimal TotalCost
+        ) : base(Model, Material, Color, ToolBox, ComputerConnection, Scanner, BaseCost, TotalCost)
         {
             this._trashCompactor = TrashCompactor;
             this._vacuum = Vacuum;

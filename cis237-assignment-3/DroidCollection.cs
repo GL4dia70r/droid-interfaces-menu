@@ -45,7 +45,9 @@ namespace cis237_assignment_3
                 Model,
                 Material,
                 Color,
-                NumberLanguages
+                NumberLanguages,
+                BaseCost,
+                TotalCost
             );
 
 
@@ -69,7 +71,9 @@ namespace cis237_assignment_3
                 Color,
                 ToolBox,
                 ComputerConnection,
-                Scanner
+                Scanner,
+                BaseCost,
+                TotalCost
             );
 
 
@@ -97,7 +101,9 @@ namespace cis237_assignment_3
                 Vacuum,
                 ToolBox,
                 ComputerConnection,
-                Scanner
+                Scanner,
+                BaseCost,
+                TotalCost
             );
 
 
@@ -125,7 +131,9 @@ namespace cis237_assignment_3
                 ComputerConnection,
                 Scanner,
                 Navigation,
-                NumberShips
+                NumberShips,
+                BaseCost,
+                TotalCost
             );
 
 

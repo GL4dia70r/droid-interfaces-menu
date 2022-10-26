@@ -34,10 +34,14 @@ namespace cis237_assignment_3
             set { _scanner = value; }
         }
 
+        public new decimal BaseCost { get; set; }
+
+        public new decimal TotalCost { get; set; }
+
         //
         public override string ToString()
         {
-            return $"{base.ToString()} {ToolBox} {ComputerConnection} {Scanner} {this.CalculateBaseCost().ToString("C")}";
+            return $"{base.ToString()} {ToolBox} {ComputerConnection} {Scanner}";
         }
 
         public override void CalculateTotalCost()
@@ -47,29 +51,13 @@ namespace cis237_assignment_3
 
         public virtual new decimal CalculateBaseCost()
         {
-            if (ToolBox || ComputerConnection || Scanner)
-            {
-                this.BaseCost = 1m * COST_PER_OPTION;
-            }
-            else if (ToolBox && ComputerConnection || Scanner && ToolBox || ComputerConnection && Scanner)
-            {
-                this.BaseCost = 2m * COST_PER_OPTION;
-            }
-            else if (ToolBox && ComputerConnection && Scanner)
-            {
-                this.BaseCost = 3m * COST_PER_OPTION;
-            }
-            else
-            {
-                this.BaseCost = 0m * COST_PER_OPTION;
-            }
+            BaseCost = this.GetBoolCost(ToolBox, COST_PER_OPTION) + 
+                this.GetBoolCost(ComputerConnection, COST_PER_OPTION) + 
+                this.GetBoolCost(Scanner, COST_PER_OPTION);
             return this.BaseCost;
         }
 
-        protected bool GetBoolCost(string field)
-        {
-
-        }
+        
 
         /// <summary>
         ///             -   Constructor for Utility droids
@@ -85,8 +73,10 @@ namespace cis237_assignment_3
             string Color,
             bool ToolBox,
             bool ComputerConnection,
-            bool Scanner
-        ) : base(Model, Material, Color)
+            bool Scanner,
+            decimal BaseCost,
+            decimal TotalCost
+        ) : base(Model, Material, Color, BaseCost, TotalCost )
 
         {
             this._toolBox = ToolBox;

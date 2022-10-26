@@ -29,6 +29,11 @@ namespace cis237_assignment_3
             set { _numberShips = value; }
         }
 
+        public new decimal BaseCost { get; set; }
+
+        public new decimal TotalCost { get; set; }
+
+
         //
         public override string ToString()
         {
@@ -42,24 +47,14 @@ namespace cis237_assignment_3
 
         protected virtual new decimal CalculateBaseCost()
         {
-            if (Navigation)
-            {
-                this.BaseCost = 1m * COST_PER_OPTION;
-            }
-            else
-            {
-                this.BaseCost = 0m * COST_PER_OPTION;
-            }
+            this.BaseCost = this.GetBoolCost(ToolBox, COST_PER_OPTION) +
+            this.GetBoolCost(ComputerConnection, COST_PER_OPTION) +
+            this.GetBoolCost(Scanner, COST_PER_OPTION) +
+            this.GetBoolCost(Navigation, COST_PER_OPTION);
 
-            if (NumberShips >= 1)
-            {
-                this.NumberShips = (int)(NumberShips * COST_PER_SHIP);
-            }
-            else
-            {
-                this.NumberShips = (int)(0m * COST_PER_OPTION);
-            }
-            return this.BaseCost + this.NumberShips;
+            this.GetNumberedCosts(NumberShips, COST_PER_SHIP);
+
+            return this.BaseCost;
         }
 
         public AstromechDroid(
@@ -70,8 +65,10 @@ namespace cis237_assignment_3
             bool ComputerConnection, 
             bool Scanner, 
             bool Navigation, 
-            int NumberShips
-        ) : base(Model, Material, Color, ToolBox, ComputerConnection, Scanner)
+            int NumberShips,
+            decimal BaseCost,
+            decimal TotalCost
+        ) : base(Model, Material, Color, ToolBox, ComputerConnection, Scanner, BaseCost, TotalCost)
         {
             this._navigation = Navigation;
             this._numberShips = NumberShips;

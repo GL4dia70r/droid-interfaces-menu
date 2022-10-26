@@ -21,10 +21,14 @@ namespace cis237_assignment_3
             set { _numberLanguages = value; }
         }
 
+        public new decimal BaseCost { get; set; }
+
+        public new decimal TotalCost { get; set; }
+
         //
         public override string ToString()
         {  
-            return $"{base.ToString()} {NumberLanguages} {this.CalculateBaseCost().ToString("C")}";
+            return $"{base.ToString()} {NumberLanguages}";
         }
 
         public override void CalculateTotalCost()
@@ -32,26 +36,24 @@ namespace cis237_assignment_3
            this.TotalCost = base.CalculateBaseCost() + this.CalculateBaseCost();
         }
 
+        //
         protected virtual new decimal CalculateBaseCost()
         {
-            if (NumberLanguages >= 1)
-            {
-                this.BaseCost = NumberLanguages * COST_PER_LANGUAGE;
-            }
-            else
-            {
-                this.BaseCost = 0;
-            }
+            this.GetNumberedCosts(NumberLanguages, COST_PER_LANGUAGE);
+
             return this.BaseCost;   
         }
 
+        
         //
         public ProtocolDroid(
             string Model,
             string Material,
             string Color,
-            int NumberLanguages
-        ) : base(Model, Material, Color)
+            int NumberLanguages,
+            decimal BaseCost,
+            decimal TotalCost
+        ) : base(Model, Material, Color, BaseCost, TotalCost)
         {
             this._numberLanguages = NumberLanguages;
         }
