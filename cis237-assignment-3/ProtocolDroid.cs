@@ -24,12 +24,12 @@ namespace cis237_assignment_3
         //
         public override string ToString()
         {  
-            return $"{base.ToString()} {NumberLanguages}";
+            return $"{base.ToString()} {NumberLanguages} {this.CalculateBaseCost().ToString("C")}";
         }
 
         public override void CalculateTotalCost()
         {
-            this.TotalCost = base.CalculateBaseCost() + NumberLanguages * COST_PER_LANGUAGE;
+           this.TotalCost = base.CalculateBaseCost() + this.CalculateBaseCost();
         }
 
         protected virtual new decimal CalculateBaseCost()
@@ -42,7 +42,7 @@ namespace cis237_assignment_3
             {
                 this.BaseCost = 0;
             }
-            return this.BaseCost;
+            return this.BaseCost;   
         }
 
         //

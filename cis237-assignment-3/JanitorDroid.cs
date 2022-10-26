@@ -29,7 +29,7 @@ namespace cis237_assignment_3
         //
         public override string ToString()
         {
-            return $"{base.ToString()} {TrashCompactor} {Vacuum} {this.CalculateBaseCost()}";
+            return $"{base.ToString()} {TrashCompactor} {Vacuum}";
         }
 
         public virtual new void CalculateTotalCost()
@@ -39,33 +39,21 @@ namespace cis237_assignment_3
 
         public virtual new decimal CalculateBaseCost()
         {
-            decimal OptionCost = 0m;
+            bool[] options = { TrashCompactor, Vacuum };
 
-            bool[] options = { 
-                TrashCompactor, 
-                Vacuum 
-            };
-
-            if (
-                options[0] 
-                || 
-                options[1]
-            )
+            if (options[0] || options[1])
             {
-                OptionCost = 1m;
+                this.BaseCost = 1m * COST_PER_OPTION;
             }
-            else if (
-                options[0] 
-                && options[1]
-            )
+            else if (options[0] && options[1])
             {
-                OptionCost = 2m;
+                this.BaseCost = 2m * COST_PER_OPTION;
             }
             else
             {
-                OptionCost = 0m;
+                this.BaseCost = 0m * COST_PER_OPTION;
             }
-            return OptionCost * COST_PER_OPTION;
+            return this.BaseCost;
         }
 
         //

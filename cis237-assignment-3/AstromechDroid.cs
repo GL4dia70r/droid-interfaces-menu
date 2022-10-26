@@ -42,17 +42,24 @@ namespace cis237_assignment_3
 
         protected virtual new decimal CalculateBaseCost()
         {
-            decimal OptionCost = 0m;
-
             if (Navigation)
             {
-                OptionCost = 1m;
+                this.BaseCost = 1m * COST_PER_OPTION;
             }
             else
             {
-                OptionCost = 0m;
+                this.BaseCost = 0m * COST_PER_OPTION;
             }
-            return OptionCost * COST_PER_OPTION + NumberShips * COST_PER_SHIP;
+
+            if (NumberShips >= 1)
+            {
+                this.NumberShips = (int)(NumberShips * COST_PER_SHIP);
+            }
+            else
+            {
+                this.NumberShips = (int)(0m * COST_PER_OPTION);
+            }
+            return this.BaseCost + this.NumberShips;
         }
 
         public AstromechDroid(

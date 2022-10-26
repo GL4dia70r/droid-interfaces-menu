@@ -54,7 +54,7 @@ namespace cis237_assignment_3
             set { _baseCost = value; }
         }
 
-        public decimal TotalCost
+        public virtual decimal TotalCost
         {
             get { return this._totalCost; }
             set { this._totalCost = value; }
@@ -65,12 +65,12 @@ namespace cis237_assignment_3
         /// <returns>ToString of variables Material and Color</returns>
         public override string ToString()
         {
-            return $"{Model} {Material} {Color, 12} {this.BaseCost} {this.TotalCost}";
+            return $"{Model} {Material} {Color, 12} {this.CalculateTotalCost()}";
         }
 
         public virtual void CalculateTotalCost()
         {
-            this.TotalCost = this.CalculateBaseCost();
+            this.CalculateBaseCost();
         }
 
         protected decimal CalculateBaseCost()

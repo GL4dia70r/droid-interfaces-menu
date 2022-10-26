@@ -37,58 +37,38 @@ namespace cis237_assignment_3
         //
         public override string ToString()
         {
-            return $"{base.ToString()} {ToolBox} {ComputerConnection} {Scanner}";
+            return $"{base.ToString()} {ToolBox} {ComputerConnection} {Scanner} {this.CalculateBaseCost().ToString("C")}";
         }
 
         public override void CalculateTotalCost()
         {
-            this.TotalCost = base.CalculateBaseCost() + 
-                this.CalculateBaseCost();
+            this.TotalCost = base.CalculateBaseCost() + this.CalculateBaseCost();
         }
 
         public virtual new decimal CalculateBaseCost()
         {
-            decimal OptionCost = 0m;
-
-            if (
-                ToolBox
-                ||
-                ComputerConnection
-                ||
-                Scanner
-            )
+            if (ToolBox || ComputerConnection || Scanner)
             {
-                OptionCost = 1m;
+                this.BaseCost = 1m * COST_PER_OPTION;
             }
-            else if (
-                ToolBox
-                && ComputerConnection
-                && !Scanner
-                || 
-                ToolBox 
-                && Scanner 
-                && !ComputerConnection
-                || 
-                ComputerConnection 
-                && Scanner
-                && !ToolBox
-            )
+            else if (ToolBox && ComputerConnection || Scanner && ToolBox || ComputerConnection && Scanner)
             {
-                OptionCost = 2m;
+                this.BaseCost = 2m * COST_PER_OPTION;
             }
-            else if (
-                ToolBox 
-                && ComputerConnection 
-                && Scanner
-            )
+            else if (ToolBox && ComputerConnection && Scanner)
             {
-                OptionCost = 3m;
+                this.BaseCost = 3m * COST_PER_OPTION;
             }
             else
             {
-                OptionCost = 0m;
+                this.BaseCost = 0m * COST_PER_OPTION;
             }
-            return OptionCost * COST_PER_OPTION;
+            return this.BaseCost;
+        }
+
+        protected bool GetBoolCost(string field)
+        {
+
         }
 
         /// <summary>
