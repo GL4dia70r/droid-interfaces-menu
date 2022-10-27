@@ -8,16 +8,20 @@ namespace cis237_assignment_3
 {
     class UtilityDroid : Droid
     {
-        protected const decimal COST_PER_OPTION = 60m;
+        protected const decimal COST_PER_OPTION = 6m;
 
         //
         private bool _toolBox;
         private bool _computerConnection;
         private bool _scanner;
 
+
+
+        /// <summary>
+        ///             - Properties
+        /// </summary>
         public new string Model { get; set; }
 
-        //
         public bool ToolBox
         {
             get { return _toolBox; }
@@ -40,22 +44,30 @@ namespace cis237_assignment_3
 
         public new decimal TotalCost { get; set; }
 
-        //
+        /// <summary>
+        ///            - Methods
+        /// </summary>
+        /// <returns> ToString() and CalculateBaseCost()/ CalculateTotalCost() </returns>
         public override string ToString()
         {
-            return $"{base.ToString()} {ToolBox} {ComputerConnection} {Scanner}";
+            return $"{base.ToString()} {ToolBox, 18} {ComputerConnection,12} {Scanner, 12} {this.CalculateBaseCost().ToString("C"), 12}";
         }
 
+        // Have not been able to get to work, stores base cost and this base cost into TotalCost
         public override void CalculateTotalCost()
         {
             this.TotalCost = base.CalculateBaseCost() + this.CalculateBaseCost();
+            return;
         }
 
+        // gets the value for base total cost.
         public virtual new decimal CalculateBaseCost()
         {
-            BaseCost = this.GetBoolCost(ToolBox, COST_PER_OPTION) + 
+            this.BaseCost = base.CalculateBaseCost() + 
+                this.GetBoolCost(ToolBox, COST_PER_OPTION) + 
                 this.GetBoolCost(ComputerConnection, COST_PER_OPTION) + 
                 this.GetBoolCost(Scanner, COST_PER_OPTION);
+
             return this.BaseCost;
         }
 

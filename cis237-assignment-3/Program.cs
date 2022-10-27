@@ -15,32 +15,32 @@ namespace cis237_assignment_3
         {
             JawaUserInterface ui = new JawaUserInterface();
 
+            ProtocolDroid pD = new ProtocolDroid();
+
+            UtilityDroid uD = new UtilityDroid();
+
+            JanitorDroid jD = new JanitorDroid();
+
+            AstromechDroid aD = new AstromechDroid();
+
             const int droidCollectionSize = 100;
 
             IDroid[] droids = new Droid[droidCollectionSize];
 
             DroidCollection droidCollection = new DroidCollection(droidCollectionSize);
 
-            ProtocolDroid droid1 = new ProtocolDroid();
-
-            UtilityDroid droid2 = new UtilityDroid();
-
-            JanitorDroid droid3 = new JanitorDroid();
-
-            AstromechDroid droid4 = new AstromechDroid();
-
-            
-
             ui.WelcomeGreeting();
 
+            
             int choice = ui.DisplayMenuAndGetUserInput();
-
+            
+            // While not choice 3, loop.
             while (choice != 3)
-            {
+            {   // switches choice selection base on case options below
                 switch (choice)
                 {
                     case 1:
-
+                        // Displays a Droid menu to choose which droid class you wish to store your droid into
                         int droidChoice = ui.DisplayDroidMenuAndGetUserInput();
 
                         while (droidChoice != 5)
@@ -48,7 +48,8 @@ namespace cis237_assignment_3
                             switch (droidChoice)
                             {
                                 case 1:
-                                    
+                                    // Displays add protocol droid menu and adds to Droid list
+
                                     if (droidChoice == 1)
                                     {
                                         string[] newDroidInformation = ui.GetNewProtocolDroidInformation();
@@ -66,12 +67,14 @@ namespace cis237_assignment_3
                                     }
                                     else
                                     {
-                                        ui.DisplayDroidAlreadyExistsError();
+                                        ui.DisplayAddDroidSuccessError();
                                     }
+                                    pD.CalculateTotalCost();
                                     break;
 
                                 case 2:
-                                    
+                                    // Displays add utility droid menu and adds to Droid list
+
                                     if (droidChoice == 2)
                                     {
                                         string[] newDroidInformation1 = ui.GetNewUtilityDroidInformation();
@@ -90,11 +93,13 @@ namespace cis237_assignment_3
                                     }
                                     else
                                     {
-                                        ui.DisplayDroidAlreadyExistsError();
+                                        ui.DisplayAddDroidSuccessError();
                                     }
+                                    uD.CalculateTotalCost();
                                     break;
 
                                 case 3:
+                                    // Displays add janitor droid menu and adds to Droid list
 
                                     if (droidChoice == 3)
                                     {
@@ -117,12 +122,13 @@ namespace cis237_assignment_3
                                     }
                                     else
                                     {
-                                        ui.DisplayDroidAlreadyExistsError();
+                                        ui.DisplayAddDroidSuccessError();
                                     }
+                                    jD.CalculateTotalCost();
                                     break;
 
                                 case 4:
-                                    
+                                    // Displays add astromech droid menu and adds to Droid list
                                     if (droidChoice == 4)
                                     {
                                         string[] newDroidInformation3 = ui.GetNewAstromechDroidInformation();
@@ -143,10 +149,7 @@ namespace cis237_assignment_3
                                         ui.DisplayAddDroidSuccess();
                                         
                                     }
-                                    else
-                                    {
-                                        ui.DisplayDroidAlreadyExistsError();
-                                    }
+                                    aD.CalculateTotalCost();
                                     break;
                             }
                             // recall Droid menu
@@ -154,11 +157,12 @@ namespace cis237_assignment_3
                         }
                         break;
                         
-                        // Print List
+                        // Print List of droids
                     case 2:
                         string allDroidString = droidCollection.ToString();
                         if (!String.IsNullOrWhiteSpace(allDroidString))
                         {
+
                             ui.DisplayAllDroids(allDroidString);
                         }
                         else
@@ -169,7 +173,7 @@ namespace cis237_assignment_3
                         break;
                 }
 
-                //
+                // recalls Main Menu 
                 choice = ui.DisplayMenuAndGetUserInput();
             }    
         }

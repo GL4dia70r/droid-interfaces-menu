@@ -16,13 +16,9 @@ namespace cis237_assignment_3
     {
         //
         private Droid[] droids;
-        //private ProtocolDroid[] protocol;
-        //private UtilityDroid[] utility;
-        //private JanitorDroid[] janitor;
-        //private AstromechDroid[] astromech;
 
         private int droidsLength;
-
+        
         //
         public DroidCollection(int size)
         {
@@ -32,7 +28,7 @@ namespace cis237_assignment_3
 
         public DroidCollection() { }
 
-        //
+        // Adds new droid
         public void AddNewProtocolDroid(
             string Model,
             string Material,
@@ -40,7 +36,7 @@ namespace cis237_assignment_3
             int NumberLanguages
         )
         {
-            //
+            // adds Protocol Droid
             droids[droidsLength] = new ProtocolDroid(
                 Model,
                 Material,
@@ -48,10 +44,11 @@ namespace cis237_assignment_3
                 NumberLanguages
             );
 
+
             droidsLength++;
         }
 
-        //
+        // Adds new droid
         public void AddNewUtilityDroid(
             string Model,
             string Material,
@@ -61,7 +58,7 @@ namespace cis237_assignment_3
             bool Scanner
         )
         {
-            //
+            // adds Utility Droid
             droids[droidsLength] = new UtilityDroid(
                 Model,
                 Material,
@@ -71,11 +68,10 @@ namespace cis237_assignment_3
                 Scanner
             );
 
-
             droidsLength++;
         }
 
-        //
+        // Adds new droid
         public void AddNewJanitorDroid(
             string Model,
             string Material,
@@ -87,7 +83,7 @@ namespace cis237_assignment_3
             bool Scanner
         )
         {
-            //
+            // Adds Janitor Droid
             droids[droidsLength] = new JanitorDroid(
                 Model,
                 Material,
@@ -99,11 +95,10 @@ namespace cis237_assignment_3
                 Scanner
             );
 
-
             droidsLength++;
         }
 
-        //
+        // Adds new droid
         public void AddNewAstromechDroid(
             string Model,
             string Material,
@@ -115,7 +110,7 @@ namespace cis237_assignment_3
             int NumberShips
         )
         {
-            //
+            // gets new Astromech droid information
             droids[droidsLength] = new AstromechDroid(
                 Model,
                 Material,
@@ -127,19 +122,19 @@ namespace cis237_assignment_3
                 NumberShips
             );
 
-
             droidsLength++;
         }
 
-        //
+        // returns array into a String
         public override string ToString()
         {
-            //
+            // null string
             string userReturnString = "";
-            //
-            foreach (IDroid model in droids)
+
+            // for each Droid model in the array
+            foreach (Droid model in droids)
             {
-                //
+                // if model != null
                 if (model != null)
                 {
                     userReturnString += model.ToString() +

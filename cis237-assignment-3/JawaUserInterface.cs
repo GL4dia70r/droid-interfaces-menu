@@ -12,12 +12,13 @@ namespace cis237_assignment_3
 {
     internal class JawaUserInterface 
     {
-
+        // constant variables to hold integers as a counter.
         const int MAX_MENU_CHOICES = 3;
         const int MAX_DROIDMENU_CHOICES = 5;
         const int MAX_MATERIALMENU_CHOICES = 6;
         const int MAX_COLORMENU_CHOICES = 9;
 
+        // Displays Greeting
         public void WelcomeGreeting()
         {
             Console.ForegroundColor = ConsoleColor.Yellow;
@@ -25,7 +26,7 @@ namespace cis237_assignment_3
             Console.ForegroundColor = ConsoleColor.Gray;
         }
 
-        //
+        // Displays main menu and gets user response
         public int DisplayMenuAndGetUserInput()
         {
             string selection;
@@ -55,7 +56,7 @@ namespace cis237_assignment_3
             
         }
 
-        //
+        // Displays Droid menu and gets user response
         public int DisplayDroidMenuAndGetUserInput()
         {
             string selection;
@@ -84,7 +85,7 @@ namespace cis237_assignment_3
 
         }
 
-        //
+        // Displays Material menu and gets user response
         public int DisplayMaterialMenuAndGetUserInput()
         {
             string selection;
@@ -113,7 +114,7 @@ namespace cis237_assignment_3
 
         }
 
-        //
+        // Displays Color menu and gets user response
         public int DisplayColorMenuAndGetUserInput()
         {
             string selection;
@@ -142,32 +143,31 @@ namespace cis237_assignment_3
 
         }
 
-        //
+        // Gets new protocol droid info
         public string[] GetNewProtocolDroidInformation()
         {
             string Model = null;
             string Material = this.GetMaterialFieldValueConversion(this.DisplayMaterialMenuAndGetUserInput().ToString());
             string Color = this.GetColorFieldValueConversion(this.DisplayColorMenuAndGetUserInput().ToString());
-            string NumberLanguages = this.GetIntField("Number Of Languages");
+            string NumberLanguages = this.GetIntField("Languages");
 
             return new string[] { Model, Material, Color, NumberLanguages };
         }
 
-        //
+        // Gets new utility droid info
         public string[] GetNewUtilityDroidInformation()
         {
             string Model = null;
             string Material = this.GetMaterialFieldValueConversion(this.DisplayMaterialMenuAndGetUserInput().ToString());
             string Color = this.GetColorFieldValueConversion(this.DisplayColorMenuAndGetUserInput().ToString());
-            string ToolBox = this.GetBoolField("ToolBox");
+            string ToolBox = this.GetBoolField("Tool Kit");
             string ComputerConnection = this.GetBoolField("Computer Connection");
             string Scanner = this.GetBoolField("Scanner");
-
 
             return new string[] { Model, Material, Color, ToolBox, ComputerConnection, Scanner };
         }
 
-        //
+        // Gets new Janitor droid info
         public string[] GetNewJanitorDroidInformation()
         {
             string Model = null;
@@ -175,32 +175,29 @@ namespace cis237_assignment_3
             string Color = this.GetColorFieldValueConversion(this.DisplayColorMenuAndGetUserInput().ToString());
             string TrashCompactor = this.GetBoolField("Trash Compactor");
             string Vacuum = this.GetBoolField("Vacuum");
-            string ToolBox = this.GetBoolField("ToolBox");
+            string ToolBox = this.GetBoolField("Tool Kit");
             string ComputerConnection = this.GetBoolField("Computer Connection");
             string Scanner = this.GetBoolField("Scanner");
-
-
 
             return new string[] { Model, Material, Color, TrashCompactor, Vacuum, ToolBox, ComputerConnection, Scanner };
         }
 
-        //
+        // Gets new astromech droid info
         public string[] GetNewAstromechDroidInformation()
         {
             string Model = null;
             string Material = this.GetMaterialFieldValueConversion(this.DisplayMaterialMenuAndGetUserInput().ToString());
             string Color = this.GetColorFieldValueConversion(this.DisplayColorMenuAndGetUserInput().ToString());
-            string ToolBox = this.GetBoolField("ToolBox");
+            string ToolBox = this.GetBoolField("Tool Kit");
             string ComputerConnection = this.GetBoolField("Computer Connection");
             string Scanner = this.GetBoolField("Scanner");
-            string Navigation = this.GetBoolField("Navigation");
-            string NumberShips = this.GetIntField("Number Of Ships");
-
+            string Navigation = this.GetBoolField("Navigation system");
+            string NumberShips = this.GetIntField("Ships");
 
             return new string[] { Model, Material, Color, ToolBox, ComputerConnection, Scanner, Navigation, NumberShips };
         }
 
-        //
+        // Displays droid was added to list successfully
         public void DisplayAddDroidSuccess()
         {
             Console.WriteLine();
@@ -209,16 +206,16 @@ namespace cis237_assignment_3
             Console.ForegroundColor = ConsoleColor.Gray;
         }
 
-        //
-        public void DisplayDroidAlreadyExistsError()
+        // Displays droid list was not successfully printed
+        public void DisplayAddDroidSuccessError()
         {
             Console.WriteLine();
             Console.ForegroundColor = ConsoleColor.Red;
-            Console.WriteLine("A Droid With That model Already Exists");
+            Console.WriteLine("There was a problem attempting to save the Droid. Please try again...");
             Console.ForegroundColor = ConsoleColor.Gray;
         }
 
-        //
+        // Displays droid list
         public void DisplayAllDroids(string allDroidsOutput)
         {
             Console.WriteLine();
@@ -231,7 +228,7 @@ namespace cis237_assignment_3
             Console.WriteLine(allDroidsOutput);
         }
 
-        //
+        // Displays droid list was not successfully printed
         public void DisplayAllDroidsError()
         {
             Console.WriteLine();
@@ -240,7 +237,7 @@ namespace cis237_assignment_3
             Console.ForegroundColor = ConsoleColor.Gray;
         }
 
-        //
+        // Displays main menu options
         private void MenuOptions()
         {
             Console.WriteLine();
@@ -251,7 +248,7 @@ namespace cis237_assignment_3
             Console.WriteLine("3. Exit.");
         }
 
-        //
+        // Displays droid menu options
         private void MenuDroidOptions()
         {
             
@@ -266,7 +263,7 @@ namespace cis237_assignment_3
             
         }
 
-        //
+        // Displays material menu options
         private void MenuMaterialOptions()
         {
             Console.WriteLine();
@@ -281,7 +278,7 @@ namespace cis237_assignment_3
         }
 
 
-        //
+        // Displays color menu options
         private void MenuColorOptions()
         {
             Console.WriteLine();
@@ -292,19 +289,20 @@ namespace cis237_assignment_3
             Console.WriteLine("3. {0}", "Blue");
             Console.WriteLine("4. {0}", "Green");
             Console.WriteLine("5. {0}", "Yellow");
-            Console.WriteLine("6. {0}", "WHite");
+            Console.WriteLine("6. {0}", "White");
             Console.WriteLine("7. {0}", "Black");
             Console.WriteLine("8. {0}", "Purple");
             Console.WriteLine("9. None.");
         }
 
+        // Displays prompt for input
         private void PromptMenu()
         {
             Console.WriteLine();
             Console.WriteLine("Entry: ");
         }
 
-        //
+        // Displays error if invalid entry
         private void ErrorMessage()
         {
             Console.WriteLine();
@@ -313,13 +311,13 @@ namespace cis237_assignment_3
             Console.ForegroundColor= ConsoleColor.Gray;
         }
 
-        //
+        // gets user input
         private string GetUserOption()
         {
             return Console.ReadLine();
         }
 
-        //
+        // If valid selection, a value is returned
         private bool ValidSelection(string selection)
         {
             // Declare a return value and set it to false
@@ -346,7 +344,7 @@ namespace cis237_assignment_3
             return givenValue;
         }
 
-        //
+        // If valid selection, a value is returned
         private bool ValidDroidSelection(string selection)
         {
             // Declare a return value and set it to false
@@ -373,7 +371,7 @@ namespace cis237_assignment_3
             return givenValue;
         }
 
-        //
+        // If valid selection, a value is returned
         private bool ValidMaterialSelection(string selection)
         {
             // Declare a return value and set it to false
@@ -400,7 +398,7 @@ namespace cis237_assignment_3
             return givenValue;
         }
 
-        //
+        // If valid selection, a value is returned
         private bool ValidColorSelection(string selection)
         {
             // Declare a return value and set it to false
@@ -427,12 +425,14 @@ namespace cis237_assignment_3
             return givenValue;
         }
 
-        //
+        // Returns value if string parameter is a certian number value, then the name from the array of materials is returned in place of that value
         private string GetMaterialFieldValueConversion(string value)
         {
             string[] names = { "Titanium Gold", "Titanium", "Gold", "Silver", "Brass" };
+
             string field = null;
             bool valid = false;
+
             while (!valid)
             {
                 if (value == "1")
@@ -477,12 +477,14 @@ namespace cis237_assignment_3
             return field;
         }
 
-        // 
+        // Returns value if string parameter is a certian number value, then the name from the array of colors is returned in place of that value 
         private string GetColorFieldValueConversion(string value)
         {
             string[] names = { "Red", "Orange", "Blue", "Green", "Yellow", "White", "Black", "Purple" };
+
             string field = null;
             bool valid = false;
+
             while (!valid)
             {
                 if (value == "1")
@@ -542,29 +544,14 @@ namespace cis237_assignment_3
             return field;
         }
 
-        //
-        public string GetDecimalField(Droid droids)
-        {
-
-            if (droids.TotalCost >= 0)
-            {
-                droids.CalculateTotalCost();
-            }
-            else
-            {
-                Console.ForegroundColor = ConsoleColor.Red;
-                Console.WriteLine("Cost was not loaded...");
-                Console.ForegroundColor = ConsoleColor.Gray;
-            }
-            return droids.TotalCost.ToString("C");
-        }
-
-        //
+        // Gets a string based on the parameter fieldName and returns an integer value then converts it to a string
         private string GetIntField(string fieldName)
         {
             Console.WriteLine("How many {0}", fieldName);
+
             int value = 0;
             bool valid = false;
+
             while (!valid)
             {
                 try
@@ -590,13 +577,15 @@ namespace cis237_assignment_3
             return value.ToString();
         }
 
-        //
+        // Gets the string from fieldName parameter and returns a bool value and converts it into a string
         private string GetBoolField(string fieldName)
         {
             Console.WriteLine("Does the droid include a {0} (y/n)", fieldName);
+
             string input = null;
             bool value = false;
             bool valid = false;
+
             while (!valid)
             {
                 input = Console.ReadLine();
@@ -619,41 +608,43 @@ namespace cis237_assignment_3
             return value.ToString();
         }
 
-        //
+        // Diplays headers for each category
         private string GetDroidHeader()
         {
             return String.Format(
-                "{0,-12} {1,-6} {2,20}",
+                "{0,-12} {1,-12} {2,-10} {3, -10} {4, -12} {5, -10} {6, -12} {7, -10} {8, -10} {9, -18} {10, -12} {11, -12} {12, -10} {13, 5}",
                 "Model",
                 "Material",
-                "Color", 
-                "Cost",
-                "Total",
-                "Number Of Languages",
-                "ToolBox",
-                "Computer Connection",
-                "Scanner",
-                "Trash Compactor",
-                "Vacuum",
-                "Navigation",
-                "Number Of Ships"
+                "Color",
+                "M&C Cost",
+                "#Languages",
+                "Tool Kit?",
+                "Connection?",
+                "Scanner?",
+                "options Cost",
+                "Trash Compactor?",
+                "Vacuum?",
+                "Navigation?",
+                "#Ships",
+                "Total Cost"
                 ) +
             Environment.NewLine +
             String.Format(
-                "{0,-12} {1,-6} {2,20}",
+                "{0,-12} {1,-12} {2,-10} {3, -9} {4, -12} {5, -10} {6, -12} {7, -9} {8, -12} {9, -16} {10, -10} {11, -14} {12, -10} {13, 5}",
                 new String('-', 12),
                 new String('-', 12),
                 new String('-', 7),
                 new String('-', 10),
-                new String('-', 26),
+                new String('-', 12),
                 new String('-', 10),
-                new String('-', 26),
+                new String('-', 10),
+                new String('-', 10),
+                new String('-', 10),
+                new String('-', 18),
                 new String('-', 6),
+                new String('-', 13),
                 new String('-', 6),
-                new String('-', 6),
-                new String('-', 6),
-                new String('-', 15),
-                new String('_', 18)
+                new String('-', 10)
 
 
             );

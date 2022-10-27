@@ -57,36 +57,34 @@ namespace cis237_assignment_3
         public virtual decimal TotalCost
         {
             get { return this._totalCost; }
-            set { this._totalCost = value; }
-        }
-        /// <summary>
-        ///             -  Methods for droid properties.
-        /// </summary>
-        /// <returns>ToString of variables Material and Color</returns>
-        public override string ToString()
-        {
-            return $"{Model} {Material} {Color, 12}";
+            set { _totalCost = value; }
         }
 
+        /// <summary>
+        ///            - Methods
+        /// </summary>
+        /// <returns> ToString() and CalculateBaseCost()/ CalculateTotalCost() </returns>
+        public override string ToString()
+        {
+            return $"{Model,-12} {Material, -12} {Color, -10} {this.CalculateBaseCost().ToString("C"), -10}";
+        }
+
+        // Can't get to print
         public virtual void CalculateTotalCost()
         {
             this.TotalCost = this.CalculateBaseCost();
         }
 
+        // gets Base cost of class.
         protected decimal CalculateBaseCost()
         {
-            if (Material != null && Color != null)
-            {
-                this.BaseCost = COST_PER_MATERIAL * 1 + COST_PER_COLOR * 1;
-            }
-            else
-            {
-                this.BaseCost = 0;
-            }
+            this.BaseCost = GetStringCosts(Material, COST_PER_MATERIAL) +
+            GetStringCosts(Color, COST_PER_COLOR);
+
             return this.BaseCost;
         }
 
-        //
+        // gets the bool of field and multiplies the value by 1 or 0.
         protected decimal GetBoolCost(bool field, decimal value)
         {
             if (field == true)
@@ -101,7 +99,21 @@ namespace cis237_assignment_3
             return this.BaseCost;
         }
 
-        //
+        // Gets cost for Material and Color
+        protected decimal GetStringCosts(string field, decimal value2)
+        {
+            if (field != null)
+            {
+                this.BaseCost = 1 * value2;
+            }
+            else if (field == null)
+            {
+                this.BaseCost = 0 * value2;
+            }
+            return this.BaseCost;
+        }
+
+        // Gets cost of parameters that return an int value and decimal value
         protected decimal GetNumberedCosts(int value, decimal value2)
         {
             if (value >= 1)
@@ -110,7 +122,7 @@ namespace cis237_assignment_3
             }
             else if (value == 0)
             {
-                this.BaseCost = value * value2;
+                this.BaseCost = 0 * value2;
             }
             return this.BaseCost;
         }
