@@ -9,67 +9,43 @@ namespace cis237_assignment_3
     class ProtocolDroid : Droid
     {
         // constant variable for language cost
-        protected const decimal COST_PER_LANGUAGE = 5m;
+        protected const decimal COST_PER_LANGUAGE = (15.99m * 0.13m) + 15.99m;
 
-        // variable to hold number of languages
-        private int _numberLanguages;
+        // private variable unique to this class
+        protected int numberLanguages;
 
-
-        /// <summary>
-        ///             - Properties
-        /// </summary>
-        public new string Model { get; set; }
-
-        public int NumberLanguages
-        {
-            get { return _numberLanguages; }
-            set { _numberLanguages = value; }
-        }
-
-        public new decimal BaseCost { get; set; }
-
-        public new decimal TotalCost { get; set; }
-
-        /// <summary>
-        ///            - Methods
-        /// </summary>
-        /// <returns> ToString() and CalculateBaseCost()/ CalculateTotalCost() </returns>
+        // Override the toString method to use the base toString method and append new information to it.
         public override string ToString()
-        {  
-            return $"{base.ToString()} {NumberLanguages, -9} {this.CalculateBaseCost().ToString("C"), 115}";
+        {
+            return
+                "Model: Protocol" +
+                base.ToString() +
+                "Number Of Languages: " +
+                Environment.NewLine;
         }
 
-        // Have not been able to get to work, stores base cost and this base cost into TotalCost
+        // Overriden abstract method from the droid class.
+        // This calculates the total coast using the baseCost method.
         public override void CalculateTotalCost()
         {
-           this.TotalCost = base.CalculateBaseCost() + this.CalculateBaseCost();
-            return;
+            this.CalculateBaseCost();
+
+            this.totalCost = this.baseCost + COST_OF_MODEL + (numberLanguages * COST_PER_LANGUAGE);
         }
 
-        // gets the value for base total cost.
-        public virtual new decimal CalculateBaseCost()
-        {
-            this.BaseCost = base.CalculateBaseCost() + this.GetNumberedCosts(NumberLanguages, COST_PER_LANGUAGE);
-
-            return this.BaseCost;   
-        }
-
-
-        /// <summary>
-        ///             - Constructor
-        /// </summary>
-        /// <param name="Model"> name of class is stored here </param>
-        /// <param name="Material"> name of material is stored here </param>
-        /// <param name="Color"> name of Color is stored here </param>
-        /// <param name="NumberLanguages"> number of languages is stored here </param>
+        // A constructor that takes in the standard parameterrs, and the number of languages it knows. 
+        // The base constructor is called to do the work of assigning the standard parameters in the base Droid class.
         public ProtocolDroid(
-            string Model,
             string Material,
             string Color,
             int NumberLanguages
-        ) : base(Model, Material, Color)
+        ) : base(Material, Color)
         {
-            this._numberLanguages = NumberLanguages;
+            // Set Droid model cost
+            COST_OF_MODEL = 150.00m + (150.00m * 0.50m);
+
+            // Assign the values that the base constructor is not taking care of.
+            this.numberLanguages = NumberLanguages;
         }
 
         public ProtocolDroid()
