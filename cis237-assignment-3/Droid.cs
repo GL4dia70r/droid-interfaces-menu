@@ -78,7 +78,8 @@ namespace cis237_assignment_3
         // +--------------------------------------------------------------------------------------------+
         public override string ToString()
         {
-            return "Material: " + this.droidMaterial + 
+            return
+                "Material: " + this.droidMaterial + 
                 Environment.NewLine +
                    "Color: " + this.droidColor + 
                 Environment.NewLine;

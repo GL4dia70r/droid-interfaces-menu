@@ -9,71 +9,60 @@ namespace cis237_assignment_3
 {
     internal class JanitorDroid : UtilityDroid
     {
-        // bool variables
-        private bool _trashCompactor;
-        private bool _vacuum;
+        // +----------------------------------------------------------------------+
+        // | A few class level variables that can be accessed in derived classes. |
+        // +----------------------------------------------------------------------+
+        protected bool hasTrashCompactor;
+        protected bool hasVacuum;
 
 
-        /// <summary>
-        ///            - Properties
-        /// </summary>
-        public new string Model { get; set; }
-
-        public bool TrashCompactor
+        protected override string GetModelName()
         {
-            get { return _trashCompactor; }
-            set { _trashCompactor = value; }
+            return "Janitor"; 
         }
 
-        public bool Vacuum
-        {
-            get { return _vacuum; }
-            set { _vacuum = value; }
-        }
-
-        public new decimal BaseCost { get; set; }
-
-        public new decimal TotalCost { get; set; }
-
-        /// <summary>
-        ///            - Methods
-        /// </summary>
-        /// <returns> ToString() and CalculateBaseCost()/ CalculateTotalCost() </returns>
+        // +--------------------------------------------------------------------------------------------------+
+        // | Overridden toString that uses the base toString method and appends the information of this class.|
+        // +--------------------------------------------------------------------------------------------------+
         public override string ToString()
         {
-            return $"{base.ToString()} {TrashCompactor, 8} {Vacuum, 18}" + $"{ this.CalculateBaseCost().ToString("C"), 38}";
+            return
+                base.ToString() +
+                "Has a trash compactor: " + this.hasTrashCompactor +
+                Environment.NewLine +
+                "Has a vacuum: " + this.hasVacuum +
+                Environment.NewLine;
         }
 
-        // Have not been able to get to work, stores base cost and this base cost into TotalCost
-        public virtual new void CalculateTotalCost()
+
+        // +--------------------------------------------------------------------------------------------------+
+        // | Override the CalculateCostOfOptions method. Use the base class implementation of the method and  |
+        // | tack on the cost of the new options.                                                             |  
+        // +--------------------------------------------------------------------------------------------------+
+        protected override decimal CalculateCostOfOptions()
         {
-            this.TotalCost = base.CalculateBaseCost() + this.CalculateBaseCost();
-            return;
+            decimal optionCost = 0;
+
+            optionCost += base.CalculateCostOfOptions();
+
+            if (hasTrashCompactor)
+            {
+                optionCost += COST_PER_OPTION;
+            }
+
+            if (hasVacuum)
+            {
+                optionCost += COST_PER_OPTION;
+            }
+
+            return optionCost;
         }
 
-        // gets the value for base total cost.
-        public virtual new decimal CalculateBaseCost()
-        {
-           this.BaseCost = base.CalculateBaseCost() +
-            this.GetBoolCost(TrashCompactor, COST_PER_OPTION) +
-            this.GetBoolCost(Vacuum, COST_PER_OPTION);
-
-            return this.BaseCost;
-        }
-
-        /// <summary>
-        ///            - Constructors
-        /// </summary>
-        /// <param name="Model"></param>
-        /// <param name="Material"></param>
-        /// <param name="Color"></param>
-        /// <param name="TrashCompactor"></param>
-        /// <param name="Vacuum"></param>
-        /// <param name="ToolBox"></param>
-        /// <param name="ComputerConnection"></param>
-        /// <param name="Scanner"></param>
+        // +--------------------------------------------------------------------+
+        // |  A constructor that takes lots of parameters to create the droid.  |
+        // |  The base constructor is called to do some of the work.            |
+        // +--------------------------------------------------------------------+
         public JanitorDroid(
-            string Model,
             string Material, 
             string Color, 
             bool TrashCompactor, 
@@ -81,10 +70,21 @@ namespace cis237_assignment_3
             bool ToolBox, 
             bool ComputerConnection, 
             bool Scanner
-        ) : base(Model, Material, Color, ToolBox, ComputerConnection, Scanner)
+
+        ) : base(
+            Material, 
+            Color, 
+            ToolBox, 
+            ComputerConnection, 
+            Scanner
+        )
         {
-            this._trashCompactor = TrashCompactor;
-            this._vacuum = Vacuum;
+            // Set Droid model cost
+            COST_OF_MODEL = 175.00m - 50.00m + (150.00m * 1.50m);
+
+            // Assign the values that the base constructor is not taking care of.
+            this.hasTrashCompactor = TrashCompactor;
+            this.hasVacuum = Vacuum;
         }
 
         public JanitorDroid()

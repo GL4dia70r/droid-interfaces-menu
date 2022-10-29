@@ -9,74 +9,81 @@ namespace cis237_assignment_3
 {
     internal class AstromechDroid : UtilityDroid
     {
-        // constant variable for cost per ship
-        protected const decimal COST_PER_SHIP = 5000m;
+        // +-------------------------------------------------------------------+
+        // | A constant that can be used in this class or any derived classes. |
+        // +-------------------------------------------------------------------+
+        protected const decimal COST_PER_SHIP = (500.00m * 0.75m) + 500.00m;
 
-        // variables to hold values
-        private bool _navigation;
-        private int _numberShips;
 
-        /// <summary>
-        ///            - Properties
-        /// </summary>
-        public new string Model { get; set; }
+        // +----------------------------------------------------------------------+
+        // | A few class level variables that can be accessed in derived classes. |
+        // +----------------------------------------------------------------------+
+        protected bool hasNavigation;
+        protected int numberShips;
 
-        public bool Navigation
+
+        protected override string GetModelName()
         {
-            get { return _navigation; }
-            set { _navigation = value; }
+            return "Astromech";
         }
 
-        public int NumberShips
-        {
-            get { return _numberShips; }
-            set { _numberShips = value; }
-        }
 
-        public new decimal BaseCost { get; set; }
-
-        public new decimal TotalCost { get; set; }
-
-
-        /// <summary>
-        ///            - Methods
-        /// </summary>
-        /// <returns> ToString() and CalculateBaseCost()/ CalculateTotalCost() </returns>
+        // +--------------------------------------------------------------------------------------------------+
+        // | Overridden toString that uses the base toString method and appends the information of this class.|
+        // +--------------------------------------------------------------------------------------------------+
         public override string ToString()
         {
-            return $"{base.ToString()} {Navigation, 38} {NumberShips, 12} {this.CalculateBaseCost().ToString("C"), 15}";
+            return 
+                base.ToString() + 
+                "Has a Navigation system: " + this.hasNavigation + 
+                Environment.NewLine +
+                "Number of ships: " + this.numberShips +
+                Environment.NewLine;
         }
 
-        // Have not been able to get to work, stores base cost and this base cost into TotalCost
+        // +---------------------------------------------------------------------------------------------------+
+        // | Overriden method to calculate the total cost. Uses work from the base class to achive the answer. |
+        // +---------------------------------------------------------------------------------------------------+
         public override void CalculateTotalCost()
         {
-            this.TotalCost = base.CalculateBaseCost() + this.CalculateBaseCost();
-            return;
+            this.CalculateBaseCost();
+
+            this.totalCost = this.baseCost + COST_OF_MODEL + this.CalculateCostOfOptions() + this.CalculateCostOfShips();
         }
 
-        // gets the value for base total cost.
-        protected virtual new decimal CalculateBaseCost()
+        // +--------------------------------------------------------------------------------------------------+
+        // | Override the CalculateCostOfOptions method. Use the base class implementation of the method and  |
+        // | tack on the cost of the new options.                                                             |  
+        // +--------------------------------------------------------------------------------------------------+
+        protected override decimal CalculateCostOfOptions()
         {
-            this.BaseCost = base.CalculateBaseCost() +
-            this.GetBoolCost(Navigation, COST_PER_OPTION) +
-            this.GetNumberedCosts(NumberShips, COST_PER_SHIP);
+            decimal optionCost = 0;
 
-            return this.BaseCost;
+            optionCost += base.CalculateCostOfOptions();
+
+            if (hasNavigation)
+            {
+                optionCost += COST_PER_OPTION;
+            }
+
+            return optionCost;
         }
 
-        /// <summary>
-        ///             - Constructors
-        /// </summary>
-        /// <param name="Model"> name of class is stored here </param>
-        /// <param name="Material"> name of material is stored here </param>
-        /// <param name="Color"> name of Color is stored here </param>
-        /// <param name="ToolBox"> true/ false of variable is stored here </param>
-        /// <param name="ComputerConnection"> true/ false of variable is stored here </param>
-        /// <param name="Scanner"> true/ false of variable is stored here </param>
-        /// <param name="Navigation"> true/ false of variable is stored here </param>
-        /// <param name="NumberShips"> The number of ships is stored here </param>
-        public AstromechDroid(
-            string Model, 
+
+        // +--------------------------------------------------------------------+
+        // | Protected virtual method that can be overriden in derived classes. |
+        // | Calculates the cost of ships.                                      |
+        // +--------------------------------------------------------------------+
+        protected virtual decimal CalculateCostOfShips()
+        {
+            return COST_PER_SHIP * numberShips;
+        }
+
+        // +--------------------------------------------------------------------+
+        // |  A constructor that takes lots of parameters to create the droid.  |
+        // |  The base constructor is called to do some of the work.            |
+        // +--------------------------------------------------------------------+
+        public AstromechDroid( 
             string Material, 
             string Color, 
             bool ToolBox, 
@@ -84,10 +91,21 @@ namespace cis237_assignment_3
             bool Scanner, 
             bool Navigation, 
             int NumberShips
-        ) : base(Model, Material, Color, ToolBox, ComputerConnection, Scanner)
+
+        ) : base(
+            Material, 
+            Color, 
+            ToolBox, 
+            ComputerConnection, 
+            Scanner
+        )
         {
-            this._navigation = Navigation;
-            this._numberShips = NumberShips;
+            // Set Droid model cost
+            COST_OF_MODEL = 245.99m + 50.00m + (150.00m * 3.50m);
+
+            // Assign the values that the base constructor is not taking care of.
+            this.hasNavigation = Navigation;
+            this.numberShips = NumberShips;
         }
 
         public AstromechDroid() 
