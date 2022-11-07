@@ -85,10 +85,34 @@ namespace cis237_assignment_3
                 Environment.NewLine;
         }
 
+        // +----------------------------------------------------------------------+
+        // |    A method that will compare to other droid objects in each class.  |
+        // +----------------------------------------------------------------------+
+        public int CompareTo(Object obj)
+        {
+            if (obj == null)
+            {
+                return -1;
+            }
+
+            Droid otherDroid = obj as Droid;
+
+            if (otherDroid != null)
+            {
+                return this.GetModelName().CompareTo(otherDroid.GetModelName());
+            }
+            else
+            {
+                throw new ArgumentException("Object is not a Model...");
+            }
+        }
+
         // +----------------------------------------------------------------------------------------------+
         // |    Abstract method that MUST be overriden in the derived class to calculate the total cost.  |
         // +----------------------------------------------------------------------------------------------+
         public abstract void CalculateTotalCost();
+
+        protected abstract string GetModelName();
 
         // +------------------------------------------------------------------------------------------+
         // |    A virtual method that can be overriden if needed, in derived classes.                 |

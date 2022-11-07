@@ -21,7 +21,7 @@ namespace cis237_assignment_3
         protected bool hasScanner;
         
         
-        protected virtual string GetModelName()
+        protected override string GetModelName()
         {
             return "Utility";
         }

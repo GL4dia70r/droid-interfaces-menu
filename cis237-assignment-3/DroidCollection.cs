@@ -13,6 +13,8 @@ namespace cis237_assignment_3
         // | Private variable to hold the collection of droids. |
         // +----------------------------------------------------+
         private IDroid[] droidSectors;
+        private MergeSort mergeSort;
+
 
         // +----------------------------------------------------+
         // | Private variable to hold the collection of droids. |
@@ -30,6 +32,8 @@ namespace cis237_assignment_3
             this.droidSectors = new Droid[collectionSize];
             this.collectionLength = 0;
         }
+
+        
 
         // +---------------------------------------------------------------------------------------+
         // | Adds new protocol droid information gathered by the parameters passed passed through. |
@@ -171,6 +175,34 @@ namespace cis237_assignment_3
         // | string that could be either printed to the screen, or sent to a file.       |
         // +-----------------------------------------------------------------------------+
         public string GetPrintString()
+        {
+            // Declare the return string
+            string returnedString = null;
+
+            // For each droid in the droidCollection
+            foreach (IDroid droid in droidSectors)
+            {
+                // If the droid is not null (It might be since the array may not be full.)
+                if (droid != null)
+                {
+                    // Calculate the total cost of the droid. Since we are are using inheritance and Polymorphism
+                    // the program will automatically know which version of CalculateTotalCost it needs to call based
+                    // on which particular type it is looking at during the foreach loop.
+                    droid.CalculateTotalCost();
+                    // Create the string now that the total cost has been calculated
+                    returnedString += "-----------------------------------------------------------+" + Environment.NewLine;
+                    returnedString += droid.ToString() + Environment.NewLine + Environment.NewLine;
+                    returnedString += "Total Cost: " + droid.TotalCost.ToString("C") + Environment.NewLine;
+                    returnedString += "-----------------------------------------------------------+" + Environment.NewLine;
+                    returnedString += Environment.NewLine;
+                }
+            }
+
+            // return the completed string
+            return returnedString;
+        }
+
+        public string GetPrintTotalCostString()
         {
             // Declare the return string
             string returnedString = null;

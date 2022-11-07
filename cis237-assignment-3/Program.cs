@@ -41,7 +41,7 @@ namespace cis237_assignment_3
             // +-------------------------------------------------------+
             // | While the choice is not equal to 3, continue program. |
             // +-------------------------------------------------------+
-            while (choice != 3)
+            while (choice != 4)
             {
 
                 switch (choice)
@@ -52,6 +52,25 @@ namespace cis237_assignment_3
 
                     case 2:
                         uI.PrintDroidList();
+                        break;
+                    case 3:
+                        uI.OtherMenuOptions();
+                        int choice2 = uI.GetMenuChoice();
+                        
+                        while (choice != 3)
+                        {
+                            switch (choice2)
+                            {
+                                case 1:
+                                    uI.PrintDroidModelList();
+                                    break;
+                                case 2:
+                                    uI.PrintDroidTotalCostList();
+                                    break;
+                            }
+                            uI.OtherMenuOptions();
+                            choice2 = uI.GetMenuChoice();
+                        }
                         break;
                 }
 

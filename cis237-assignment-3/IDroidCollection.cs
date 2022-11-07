@@ -8,9 +8,9 @@ namespace cis237_assignment_3
 {
     interface IDroidCollection
     {
-        // +-----------------------------------------------------------------------+
-        // | Various overloaded Add methods to add a new droid to the collection.  |
-        // +-----------------------------------------------------------------------+
+        // +--------------------------------------------------------------------------------+
+        // | Various overloaded Add methods to add and sort a new droid to the collection.  |
+        // +--------------------------------------------------------------------------------+
         bool AddNewProtocolDroid(
             string Material, 
             string Color, 

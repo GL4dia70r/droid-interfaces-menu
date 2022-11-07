@@ -23,7 +23,7 @@ namespace cis237_assignment_3
         // |  protected method unique to this class. Sets the name of  |
         // |  current model.                                           |
         // +-----------------------------------------------------------+
-        protected string GetModelName()
+        protected override string GetModelName()
         {
             return "Protocol";
         }
