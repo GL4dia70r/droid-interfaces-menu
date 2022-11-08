@@ -9,22 +9,22 @@ namespace cis237_assignment_3
 {
     internal class MergeSort
     {
-        protected int _aSize;
-        protected IComparable[] _array;
+    //    protected int _aSize;
+    //    protected IComparable[] _array;
 
-        public MergeSort(
-            IComparable[] a, 
-            int length
-            )
-        {
-            this._array = a;
-            this._aSize = length;
-        }
+    //    public MergeSort(
+    //        IComparable[] a, 
+    //        int length
+    //        )
+    //    {
+    //        this._array = a;
+    //        this._aSize = length;
+    //    }
 
-        public MergeSort() 
-        { 
-            // Do Nothing
-        }
+    //    public MergeSort() 
+    //    { 
+    //        // Do Nothing
+    //    }
 
         // Main entry point to sort
         public static void Sort(IComparable[] a, int length)
@@ -78,7 +78,7 @@ namespace cis237_assignment_3
                 { // index past right subarray max index
                     a[k] = aux[i++];
                 }
-                else if (aux[j].CompareTo(aux[i]) <= 0)
+                else if (aux[j].CompareTo(aux[i]) < 0)
                 {  // compare
                     a[k] = aux[j++];
                 }

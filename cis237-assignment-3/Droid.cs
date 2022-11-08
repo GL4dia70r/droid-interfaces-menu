@@ -94,7 +94,7 @@ namespace cis237_assignment_3
 
             if (otherDroid != null)
             {
-                return TotalCost.CompareTo(otherDroid.TotalCost);
+                return this.TotalCost.CompareTo(otherDroid.TotalCost);
             }
             else
             {

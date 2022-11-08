@@ -48,8 +48,8 @@ namespace cis237_assignment_3
             Console.WriteLine();
             Console.WriteLine("1. Add a Droid to list.");
             Console.WriteLine("2. Print current Droid list.");
-            Console.WriteLine("3. Print by Model.");
-            Console.WriteLine("4. Print by TotalCost.");
+            Console.WriteLine("3. Sort by Model.");
+            Console.WriteLine("4. Sort by TotalCost.");
             Console.WriteLine("5. Exit.");
             Console.Write("|------> ");
         }
@@ -140,19 +140,21 @@ namespace cis237_assignment_3
             Console.WriteLine(this.droidCollection.GetPrintString());
         }
 
-        // Not used.
-        //public void PrintDroidModelList()
-        //{
-        //    Console.WriteLine();
-        //    Console.WriteLine(this.droidCollection.SortByModel());
-        //}
         
-        // Not used.
-        //public void PrintDroidTotalCostList()
-        //{
-        //    Console.WriteLine();
-        //    Console.WriteLine(this.droidCollection.SortByTotalCost());
-        //}
+        public void PrintDroidModelList()
+        {
+            Console.WriteLine();
+            Console.WriteLine(this.droidCollection.SortByModel());
+            Console.WriteLine(this.droidCollection.GetPrintString());
+        }
+
+
+        public void PrintDroidTotalCostList()
+        {
+            Console.WriteLine();
+            Console.WriteLine(this.droidCollection.SortByTotalCost());
+            Console.WriteLine(this.droidCollection.GetPrintString());
+        }
 
         // +------------------------------+
         // | Display the Model Selection. |

@@ -70,10 +70,10 @@ namespace cis237_assignment_3
 
                     // below cases do not work right.
                     case 3: // suppose to sort by Model, but crashes...
-                        droidCollection.SortByModel();
+                        uI.PrintDroidModelList();
                         break;
                     case 4:
-                        droidCollection.SortByTotalCost(); // suppose to sort by total cost, but does nothing.
+                        uI.PrintDroidTotalCostList(); // suppose to sort by total cost, but does nothing.
                         break;
                 }
 

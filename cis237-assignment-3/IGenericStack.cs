@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 
 namespace cis237_assignment_3
 {
@@ -14,7 +15,7 @@ namespace cis237_assignment_3
         ///          | Adds to the front of the list |
         ///          |*******************************| 
         /// </summary>
-        void Add(T Data);
+        void Push(T Data);
 
         /// <summary>
         ///                       Method

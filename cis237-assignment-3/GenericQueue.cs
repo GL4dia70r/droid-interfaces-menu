@@ -13,11 +13,11 @@ namespace cis237_assignment_3
         ///          | Make node class as an inner class |      
         ///          |***********************************|
         /// </summary>
-        public class Node<T>
+        public class Node
         {
             public T Data { get; set; }
 
-            public Node<T> Next { get; set; }
+            public Node Next { get; set; }
         }
 
         /// <summary>
@@ -25,9 +25,36 @@ namespace cis237_assignment_3
         ///          | A couple of pointers to the head and tail of the linked list |      
         ///          |**************************************************************|
         /// </summary>
-        protected Node<T> _head;
-        protected Node<T> _tail;
+        protected Node _head;
+        protected Node _tail;
         protected int _size;
+
+        public bool IsEmpty
+        {
+            get
+            {
+                /// <summary>
+                ///          |**************************************************************|
+                ///          | To check whether or not it is empty we can check to see if   |
+                ///          | the head pointer is null.If so, there are no nodes in the    |
+                ///          | list, so it must be empty.                                   |
+                ///          |**************************************************************|
+                /// </summary>
+                return _head == null;
+            }
+        }
+
+        public Node Head
+        {
+            get { return _head; }
+            set { _head = value; }
+        }
+
+        public Node Tail
+        {
+            get { return _tail; }
+            set { _tail = value; }
+        }
 
         public int Size
         {
@@ -37,81 +64,131 @@ namespace cis237_assignment_3
             }
         }
 
-        public GenericQueue<T>.Node<T> Head
-        {
-            get { return _head; }
-
-            set { _head = value; }
-        }
-
-        public GenericQueue<T>.Node<T> Tail
-        {
-            get { return _tail; }
-
-            set { _tail = value; }
-        }
-
-        public int Length
-        {
-            get { return _size; }
-
-            set { _size = value; }
-        }
-
         /// <summary>
         ///          |*****************************************|
         ///          |       This may not be working           |      
         ///          |*****************************************|
         /// </summary>
-        public void Add(T Data)
+        public void Enqueue(T Data)
         {
-            Node<T> newNode = new Node<T>();
+            /// <summary>
+            ///          |**************************************************************|
+            ///          |  Make a new variable to also reference the tail of the list  |      
+            ///          |**************************************************************|
+            /// </summary>
+            Node oldtail = _tail;
 
-            newNode.Data = Data;
 
-            if (_head == null)
+            /// <summary>
+            ///          |**************************************************************|
+            ///          |      Make a new node and assign it to the tail variable      |      
+            ///          |**************************************************************|
+            /// </summary>
+            _tail = new Node();
+
+
+            /// <summary>
+            ///          |**************************************************************|
+            ///          |            Set the data on the new node (_tail)              |      
+            ///          |**************************************************************|
+            /// </summary>
+            _tail.Data = Data;
+
+
+            /// <summary>
+            ///          |******************************************************************************************|
+            ///          |     Make the next property of the new node point to null to equat the end of the list    |      
+            ///          |******************************************************************************************|
+            /// </summary>
+            _tail.Next = null;
+
+
+            /// <summary>
+            ///          |**************************************************************|
+            ///          |     Check to see if the list is empty. If so, make the       |
+            ///          |     head point to the same location as the tail.             |      
+            ///          |**************************************************************|
+            /// </summary>
+            if (IsEmpty)
             {
-                Head = newNode;
-                Tail = newNode;
-                Length++;
+                _head = _tail;
             }
+            //  |**************************************************************|
+            //  |     We need to take the oldTail and make it's next           |
+            //  |     property point to the tail that we just created.         |      
+            //  |**************************************************************|
             else
             {
-                _tail = newNode;
-                newNode.Next = Tail;
-                Tail = newNode;
-                Length++;
+                oldtail.Next = _tail;
             }
+
+
+            /// <summary>
+            ///          |**************************************************************|
+            ///          |                Increment the size of the list                |      
+            ///          |**************************************************************|
+            /// </summary>
+            _size++;
         }
 
         /// <summary>
         ///          |*****************************************|
-        ///          |       This may not be working           |      
+        ///          |       This has a big 'O' of O(1)        |      
         ///          |*****************************************|
         /// </summary>
         public T Dequeue()
         {
-            T returnData = default(T);
-
-            Node<T> tempNode = new Node<T>();
-
-            if (this.Tail != null)
+            /// <summary>
+            ///          |*******************************|
+            ///          |  If it is empty, throw error  |      
+            ///          |*******************************|
+            /// </summary>
+            if (IsEmpty)
             {
-                returnData = this.Tail.Data;
-
-                tempNode = Tail;
-
-                this.Tail = this.Tail.Next;
-
-                if (this.Tail != null)
-                {
-                    this.Tail.Next = null;
-                }
-
-                tempNode.Next = null;
-
-                this.Length--;
+                throw new Exception("List is empty...");
             }
+
+
+            /// <summary>
+            ///          |*******************************|
+            ///          |    Get the data to return     |      
+            ///          |*******************************|
+            /// </summary>
+            T returnData = _head.Data;
+
+
+            /// <summary>
+            ///          |*************************************************************|
+            ///          |        Move the head pointer to the next in the list        |      
+            ///          |*************************************************************|
+            /// </summary>
+            _head = _head.Next;
+
+
+            /// <summary>
+            ///          |*******************************|
+            ///          |      Decrease the size        |      
+            ///          |*******************************|
+            /// </summary>
+            _size--;
+
+
+            /// <summary>
+            ///          |****************************************************************|
+            ///          |   Check to see if we just removed the last node from the list  |      
+            ///          |****************************************************************|
+            /// </summary>
+            if (IsEmpty)
+            {
+                _tail = null;
+            }
+
+
+            /// <summary>
+            ///          |*************************************************************|
+            ///          |   Return the returnData we pulled out from the first node   |      
+            ///          |*************************************************************|
+            /// </summary>
             return returnData;
         }
 
@@ -130,7 +207,7 @@ namespace cis237_assignment_3
             ///          | Start if at the head node.              |      
             ///          |*****************************************|
             /// </summary>
-            Node<T> current = Head;
+            Node current = _head;
 
 
             /// <summary>
