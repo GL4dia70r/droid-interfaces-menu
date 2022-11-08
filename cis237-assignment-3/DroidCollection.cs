@@ -4,16 +4,16 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Xml.Schema;
 
 namespace cis237_assignment_3
 {
-    class DroidCollection : IDroidCollection
+    class DroidCollection : IDroidCollection 
     {
         // +----------------------------------------------------+
         // | Private variable to hold the collection of droids. |
         // +----------------------------------------------------+
         private IDroid[] droidSectors;
-        private MergeSort mergeSort;
 
 
         // +----------------------------------------------------+
@@ -202,32 +202,86 @@ namespace cis237_assignment_3
             return returnedString;
         }
 
-        public string GetPrintTotalCostString()
+        public bool SortByModel()
         {
-            // Declare the return string
-            string returnedString = null;
+            IGenericStack<AstromechDroid> astromechStack = new GenericStack<AstromechDroid>();
+            IGenericStack<JanitorDroid> janitorStack = new GenericStack<JanitorDroid>();
+            IGenericStack<UtilityDroid> utilityStack = new GenericStack<UtilityDroid>();
+            IGenericStack<ProtocolDroid> protocolStack = new GenericStack<ProtocolDroid>();
 
-            // For each droid in the droidCollection
-            foreach (IDroid droid in droidSectors)
+            GenericQueue<IDroid> droidQueue = new GenericQueue<IDroid>();
+
+            //Add droids to appropriate stack types
+            for (int i = 0; i < collectionLength; i++)
             {
-                // If the droid is not null (It might be since the array may not be full.)
-                if (droid != null)
+                try
                 {
-                    // Calculate the total cost of the droid. Since we are are using inheritance and Polymorphism
-                    // the program will automatically know which version of CalculateTotalCost it needs to call based
-                    // on which particular type it is looking at during the foreach loop.
-                    droid.CalculateTotalCost();
-                    // Create the string now that the total cost has been calculated
-                    returnedString += "-----------------------------------------------------------+" + Environment.NewLine;
-                    returnedString += droid.ToString() + Environment.NewLine + Environment.NewLine;
-                    returnedString += "Total Cost: " + droid.TotalCost.ToString("C") + Environment.NewLine;
-                    returnedString += "-----------------------------------------------------------+" + Environment.NewLine;
-                    returnedString += Environment.NewLine;
+                    astromechStack.AddModel((AstromechDroid)droidSectors[i]);
+                    i++;
                 }
+                catch
+                {
+                    try
+                    {
+                        janitorStack.AddModel((JanitorDroid)droidSectors[i]);
+                        i++;
+                    }
+                    catch
+                    {
+                        try
+                        {
+                            utilityStack.AddModel((UtilityDroid)droidSectors[i]);
+                            i++;
+                        }
+                        catch
+                        {
+                            try
+                            {
+                                protocolStack.AddModel((ProtocolDroid)droidSectors[i]);
+                                i++;
+                            }
+                            catch
+                            {
+
+                                return false;
+                            }
+                        }
+                    }
+                }
+                return true;
+            }
+            //Add droids in order to the queue
+            while (astromechStack.Display != null)
+            {
+                droidQueue.AddModel((IDroid)astromechStack.Pop());
+            }
+            while (janitorStack.Display != null)
+            {
+                droidQueue.AddModel((IDroid)janitorStack.Pop());
+            }
+            while (utilityStack.Display != null)
+            {
+                droidQueue.AddModel((IDroid)utilityStack.Pop());
+            }
+            while (protocolStack.Display != null)
+            {
+                droidQueue.AddModel((IDroid)protocolStack.Pop());
             }
 
-            // return the completed string
-            return returnedString;
+            //Dequeue droids back into the array
+            for (int i = 0; droidQueue != null; i++)
+            {
+                    droidSectors[i] = (IDroid)droidQueue.Dequeue();
+            }
+
+            return true;
+        }
+
+        public bool SortByTotalCost()
+        {
+            MergeSort mergeSort = new MergeSort(this.droidSectors, this.collectionLength);
+
+            return true;
         }
     }
 }

@@ -48,21 +48,12 @@ namespace cis237_assignment_3
             Console.WriteLine();
             Console.WriteLine("1. Add a Droid to list.");
             Console.WriteLine("2. Print current Droid list.");
-            Console.WriteLine("3. Print Sorted List by Model or TotalCost.");
-            Console.WriteLine("4. Exit.");
+            Console.WriteLine("3. Print by Model.");
+            Console.WriteLine("4. Print by TotalCost.");
+            Console.WriteLine("5. Exit.");
             Console.Write("|------> ");
         }
 
-        public void OtherMenuOptions()
-        {
-            Console.WriteLine();
-            Console.WriteLine("What is your entry? (Choose below)");
-            Console.WriteLine();
-            Console.WriteLine("1. Print by Model Droid list.");
-            Console.WriteLine("2. Print by total cost Droid list.");
-            Console.WriteLine("3. Cancel.");
-            Console.Write("|------> ");
-        }
 
         // +--------------------------------------------+
         // | Displays main menu and gets user response. |
@@ -141,7 +132,7 @@ namespace cis237_assignment_3
 
 
         // +-------------------------------------+
-        // | Method to print out the droid list. |
+        // | Methods to print out the droid list. |
         // +-------------------------------------+
         public void PrintDroidList()
         {
@@ -152,14 +143,14 @@ namespace cis237_assignment_3
         public void PrintDroidModelList()
         {
             Console.WriteLine();
-            Console.WriteLine(this.droidCollection.GetPrintString());
+            Console.WriteLine(this.droidCollection.SortByModel());
         }
 
-        public void PrintDroidTotalCostList()
-        {
-            Console.WriteLine();
-            Console.WriteLine(this.droidCollection.GetPrintString());
-        }
+        //public void PrintDroidTotalCostList()
+        //{
+        //    Console.WriteLine();
+        //    Console.WriteLine(this.droidCollection.SortByTotalCost());
+        //}
 
         // +------------------------------+
         // | Display the Model Selection. |

@@ -100,9 +100,13 @@ Be sure to think about what the time complexity for the bucket sort will be. Thi
 
 ## Outside Resources Used
 
+https://barnesbrothers.ddns.net/cis237/recursion-visualizations/merge_sort.html
 
+https://barnesbrothers.ddns.net/cis237/recursion-visualizations/merge.html
 
 ## Known Problems, Issues, And/Or Errors in the Program
+
+Slight confusion implementing methods into DroidCollection class.
 
 <br/><br/><br/><br/><br/><br/><br/><br/>
 

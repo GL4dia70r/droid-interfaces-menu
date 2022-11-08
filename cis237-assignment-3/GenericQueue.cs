@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace cis237_assignment_3
 {
-    internal class GenericQueue<Model> : IGenericQueue<Model>
+    internal class GenericQueue<T> : IGenericQueue<T>
     {
         /// <summary>
         ///          |***********************************|
@@ -15,7 +15,7 @@ namespace cis237_assignment_3
         /// </summary>
         protected class Node
         {
-            public Model Data { get; set; }
+            public T Data { get; set; }
 
             public Node Next { get; set; }
         }
@@ -29,21 +29,6 @@ namespace cis237_assignment_3
         protected Node _tail;
         protected int _size;
 
-        public bool IsEmpty
-        {
-            get
-            {
-                /// <summary>
-                ///          |**************************************************************|
-                ///          | To check whether or not it is empty we can check to see if   |
-                ///          | the head pointer is null.If so, there are no nodes in the    |
-                ///          | list, so it must be empty.                                   |
-                ///          |**************************************************************|
-                /// </summary>
-                return _head == null;
-            }
-        }
-
         public int Size
         {
             get
@@ -52,292 +37,50 @@ namespace cis237_assignment_3
             }
         }
 
-
-
         /// <summary>
         ///          |*****************************************|
         ///          |       This has a big 'O' of O(1)        |      
         ///          |*****************************************|
         /// </summary>
-        public void AddToFront(Model Data)
+        public void AddModel(T Data)
         {
-            /// <summary>
-            ///          |**************************************************************|
-            ///          |  Make a new variable to also reference the head of the list  |      
-            ///          |**************************************************************|
-            /// </summary>
-            Node oldHead = _head;
+            Node newNode = new Node();
 
+            newNode.Data = Data;
 
-            /// <summary>
-            ///          |**************************************************************|
-            ///          |      Make a new node and assign it to the head variable      |      
-            ///          |**************************************************************|
-            /// </summary>
-            _head = new Node();
-
-
-            /// <summary>
-            ///          |**************************************************************|
-            ///          |            Set the data on the new node (_head)              |      
-            ///          |**************************************************************|
-            /// </summary>
-            _head.Data = Data;
-
-
-            /// <summary>
-            ///          |**************************************************************|
-            ///          | Make the next property of the new node point to the old head |      
-            ///          |**************************************************************|
-            /// </summary>
-            _head.Next = oldHead;
-
-
-            /// <summary>
-            ///          |**************************************************************|
-            ///          |                Increment the size of the list                |      
-            ///          |**************************************************************|
-            /// </summary>
-            _size++;
-
-
-            /// <summary>
-            ///          |**************************************************************|
-            ///          |   Ensure that if we are adding the very first node to the    |
-            ///          |   list that the tail will be pointing to the new node we     |
-            ///          |   create. But only on first add.                             |
-            ///          |**************************************************************|
-            /// </summary>
-            if (_size == 1)
+            if (_head == null)
             {
-                _tail = _head;
+                _head = newNode;
+                _tail = newNode;
+                _size++;
             }
-        }
-
-
-
-        /// <summary>
-        ///          |*****************************************|
-        ///          |       This has a big 'O' of O(1)        |      
-        ///          |*****************************************|
-        /// </summary>
-        public void AddToBack(Model Data)
-        {
-            /// <summary>
-            ///          |**************************************************************|
-            ///          |  Make a new variable to also reference the tail of the list  |      
-            ///          |**************************************************************|
-            /// </summary>
-            Node oldtail = _tail;
-
-
-            /// <summary>
-            ///          |**************************************************************|
-            ///          |      Make a new node and assign it to the tail variable      |      
-            ///          |**************************************************************|
-            /// </summary>
-            _tail = new Node();
-
-
-            /// <summary>
-            ///          |**************************************************************|
-            ///          |            Set the data on the new node (_tail)              |      
-            ///          |**************************************************************|
-            /// </summary>
-            _tail.Data = Data;
-
-
-            /// <summary>
-            ///          |******************************************************************************************|
-            ///          |     Make the next property of the new node point to null to equat the end of the list    |      
-            ///          |******************************************************************************************|
-            /// </summary>
-            _tail.Next = null;
-
-
-            /// <summary>
-            ///          |**************************************************************|
-            ///          |     Check to see if the list is empty. If so, make the       |
-            ///          |     head point to the same location as the tail.             |      
-            ///          |**************************************************************|
-            /// </summary>
-            if (IsEmpty)
-            {
-                _head = _tail;
-            }
-            //  |**************************************************************|
-            //  |     We need to take the oldTail and make it's next           |
-            //  |     property point to the tail that we just created.         |      
-            //  |**************************************************************|
             else
             {
-                oldtail.Next = _tail;
+                _head.Next = newNode;
+                newNode.Next = _head;
+                _head = newNode;
+                _size++;
             }
-
-
-            /// <summary>
-            ///          |**************************************************************|
-            ///          |                Increment the size of the list                |      
-            ///          |**************************************************************|
-            /// </summary>
-            _size++;
         }
 
-
-        /// <summary>
-        ///          |*****************************************|
-        ///          |       This has a big 'O' of O(1)        |      
-        ///          |*****************************************|
-        /// </summary>
-        public Model RemoveFromFront()
+        public T Dequeue()
         {
-            /// <summary>
-            ///          |*******************************|
-            ///          |  If it is empty, throw error  |      
-            ///          |*******************************|
-            /// </summary>
-            if (IsEmpty)
+            T returnData = default(T);
+
+            Node tempNode = new Node();
+
+            if (this._tail != null)
             {
-                throw new Exception("List is empty...");
-            }
-
-
-            /// <summary>
-            ///          |*******************************|
-            ///          |    Get the data to return     |      
-            ///          |*******************************|
-            /// </summary>
-            Model returnData = _head.Data;
-
-
-            /// <summary>
-            ///          |*************************************************************|
-            ///          |        Move the head pointer to the next in the list        |      
-            ///          |*************************************************************|
-            /// </summary>
-            _head = _head.Next;
-
-
-            /// <summary>
-            ///          |*******************************|
-            ///          |      Decrease the size        |      
-            ///          |*******************************|
-            /// </summary>
-            _size--;
-
-
-            /// <summary>
-            ///          |****************************************************************|
-            ///          |   Check to see if we just removed the last node from the list  |      
-            ///          |****************************************************************|
-            /// </summary>
-            if (IsEmpty)
-            {
-                _tail = null;
-            }
-
-
-            /// <summary>
-            ///          |*************************************************************|
-            ///          |   Return the returnData we pulled out from the first node   |      
-            ///          |*************************************************************|
-            /// </summary>
-            return returnData;
-        }
-
-
-        /// <summary>
-        ///          |*****************************************|
-        ///          |       This has a big 'O' of O(N)        |
-        ///          |-----------------------------------------|
-        ///          |  Removing from back is not as easy as   |
-        ///          |  front. It requires more work due to    |
-        ///          |  looping.                               |      
-        ///          |*****************************************|
-        /// </summary>
-        public Model RemoveFromBack()
-        {
-            /// <summary>
-            ///          |*******************************************|
-            ///          |  Check if empty, throw exception if it is |      
-            ///          |*******************************************|
-            /// </summary>
-            if (IsEmpty)
-            {
-                throw new Exception("List is empty...");
-            }
-
-
-            /// <summary>
-            ///          |***********************************************|
-            ///          |    Get the data to return right off the bat   |      
-            ///          |***********************************************|
-            /// </summary>
-            Model returnData = _tail.Data;
-
-
-            /// <summary>
-            ///          |********************************************************************|
-            ///          |  Check to see if we are on the last node. If so, we can just set   |
-            ///          |  the head and tail to null since we want to remove the only node   |
-            ///          |   remaining in the list.                                           |      
-            ///          |********************************************************************|
-            /// </summary>
-            if (_head == _tail)
-            {
-                _head = null;
-                _tail = null;
-            }
-            //  |*************************************************************|
-            //  |  Else, we need to traverse the list and stop right before   |
-            //  |  we reach the tail.                                         |      
-            //  |*************************************************************|
-            else
-            {
-                /// <summary>
-                ///          |*************************************************************|
-                ///          |  Create a temporary node to use to 'walk' down the list.    |      
-                ///          |*************************************************************|
-                /// </summary>
-                Node current = _head;
-
-
-                /// <summary>
-                ///          |********************************************************************|
-                ///          |  Keep moving forward until the current.Next is equal to the tail.  |
-                ///          |  Keep looping while current.Next does not equal (!=) '_tail'       |      
-                ///          |********************************************************************|
-                /// </summary>
-                while (current.Next != _tail)
+                returnData = this._tail.Data;
+                tempNode = _tail;
+                this._tail = this._tail.Next;
+                if (this._tail != null)
                 {
-
-                    // |*************************************************************|
-                    // |  Set the current pointer to the current pointers next node. |      
-                    // |*************************************************************| 
-                    current = current.Next;
+                    this._tail.Next = null;
                 }
-
-
-                /// <summary>
-                ///          |****************************************************************|
-                ///          |  I am now in position to do some work. Set the tail to the     |
-                ///          |  current position.                                             |      
-                ///          |****************************************************************|
-                /// </summary>
-                _tail = current;
-                // |*************************************************************|
-                // |  Make the last node that we are removing go away by setting |
-                // |  tail's next property to null.                              |      
-                // |*************************************************************|
-                _tail.Next = null;
+                tempNode.Next = null;
+                this._size--;
             }
-
-
-            /// <summary>
-            ///          |***************************|
-            ///          |   Return the returnData   |      
-            ///          |***************************|
-            /// </summary>
             return returnData;
         }
 

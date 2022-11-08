@@ -54,7 +54,7 @@ namespace cis237_assignment_3
         public sealed class Color
         {
             private Color() { }
-            public const string Pearl_White = "Pearl WHite";
+            public const string Pearl_White = "Pearl White";
             public const string Jet_Black = "Jet Black";
             public const string Blue = "Blue";
             public const string Gold = "Gold";
@@ -99,11 +99,11 @@ namespace cis237_assignment_3
 
             if (otherDroid != null)
             {
-                return this.GetModelName().CompareTo(otherDroid.GetModelName());
+                return this.TotalCost.CompareTo(otherDroid.TotalCost);
             }
             else
             {
-                throw new ArgumentException("Object is not a Model...");
+                throw new ArgumentException("These are not the droids we are looking for...");
             }
         }
 

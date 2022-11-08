@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace cis237_assignment_3
 {
-    internal interface IGenericQueue<Model>
+    internal interface IGenericQueue<T>
     {
         /// <summary>
         ///                     Method
@@ -14,35 +14,15 @@ namespace cis237_assignment_3
         ///          | Adds to the front of the list |
         ///          |*******************************| 
         /// </summary>
-        void AddToFront(Model Data);
-
-
-        /// <summary>
-        ///                      Method
-        ///          |******************************|
-        ///          | Adds to the back of the list |
-        ///          |******************************|                                    
-        /// </summary>
-        void AddToBack(Model Data);
-
+        void AddModel(T Data);
 
         /// <summary>
         ///                       Method
-        ///          |************************************|        
-        ///          | Removes from the front of the list |
-        ///          |************************************|
+        ///          |*************************************|        
+        ///          | Dequeues from the front of the list |
+        ///          |*************************************|
         /// </summary>
-        Model RemoveFromFront();
-
-
-        /// <summary>
-        ///                       Method
-        ///          |***********************************|
-        ///          | Removes from the back of the list |
-        ///          |***********************************|
-        /// </summary>
-        Model RemoveFromBack();
-
+        T Dequeue();
 
         /// <summary>
         ///                   Method
@@ -51,17 +31,6 @@ namespace cis237_assignment_3
         ///          |***********************|
         /// </summary>
         void Display();
-
-
-
-        /// <summary>
-        ///                          Property
-        ///          |**************************************|
-        ///          |       Is empty? Get information      |      
-        ///          |**************************************|
-        /// </summary>
-        bool IsEmpty { get; }
-
 
         /// <summary>
         ///                     Property

@@ -18,6 +18,18 @@ namespace cis237_assignment_3
             // +--------------------------------------------------------------+
             IDroidCollection droidCollection = new DroidCollection(100);
 
+            droidCollection.AddNewProtocolDroid("Carbonite", "Jet Black", 300);
+            droidCollection.AddNewProtocolDroid("Titanium", "Gold", 5000);
+
+            droidCollection.AddNewUtilityDroid("Carbonite", "Pearl White", true, true, true); 
+            droidCollection.AddNewUtilityDroid("Black Steel", "Gold", false, true, true);
+
+            droidCollection.AddNewJanitorDroid("Carbonite", "Pearl White", false, true, true, true, true);
+            droidCollection.AddNewJanitorDroid("Carbonite", "Jet Black", true, true, true, true, true);
+
+            droidCollection.AddNewAstromechDroid("Carbonite", "Jet Black", true, true, true, true, 5600);
+            droidCollection.AddNewAstromechDroid("Blaster Practice", "Jet Black", true, false, false, true, 500);
+
             // +-------------------------------------------------------------------------------+
             // | Create a user interface and pass the droidCollection into it as a dependency. |
             // +-------------------------------------------------------------------------------+
@@ -41,7 +53,7 @@ namespace cis237_assignment_3
             // +-------------------------------------------------------+
             // | While the choice is not equal to 3, continue program. |
             // +-------------------------------------------------------+
-            while (choice != 4)
+            while (choice != 5)
             {
 
                 switch (choice)
@@ -54,23 +66,11 @@ namespace cis237_assignment_3
                         uI.PrintDroidList();
                         break;
                     case 3:
-                        uI.OtherMenuOptions();
-                        int choice2 = uI.GetMenuChoice();
-                        
-                        while (choice != 3)
-                        {
-                            switch (choice2)
-                            {
-                                case 1:
-                                    uI.PrintDroidModelList();
-                                    break;
-                                case 2:
-                                    uI.PrintDroidTotalCostList();
-                                    break;
-                            }
-                            uI.OtherMenuOptions();
-                            choice2 = uI.GetMenuChoice();
-                        }
+                        droidCollection.SortByModel();
+                        uI.PrintDroidList();
+                        break;
+                    case 4:
+                        droidCollection.SortByTotalCost();
                         break;
                 }
 

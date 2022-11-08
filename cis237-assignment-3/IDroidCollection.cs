@@ -22,7 +22,7 @@ namespace cis237_assignment_3
             string Color, 
             bool HasToolBox, 
             bool HasComputerConnection, 
-            bool HasArm
+            bool HasScanner
         );
 
         bool AddNewJanitorDroid(
@@ -30,7 +30,7 @@ namespace cis237_assignment_3
             string Color, 
             bool HasToolBox, 
             bool HasComputerConnection, 
-            bool HasArm, 
+            bool HasScanner, 
             bool HasTrashCompactor, 
             bool HasVaccum
         );
@@ -40,7 +40,7 @@ namespace cis237_assignment_3
             string Color, 
             bool HasToolBox, 
             bool HasComputerConnection, 
-            bool HasArm, 
+            bool HasScanner, 
             bool HasFireExtinguisher, 
             int NumberOfShips
         );
@@ -49,5 +49,9 @@ namespace cis237_assignment_3
         // | Method to get the data for a droid into a nicely formatted string that can be output. |
         // +---------------------------------------------------------------------------------------+
         string GetPrintString();
+
+        bool SortByModel();
+
+        bool SortByTotalCost();
     }
 }
