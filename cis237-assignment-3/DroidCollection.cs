@@ -202,6 +202,11 @@ namespace cis237_assignment_3
             return returnedString;
         }
 
+        /// <summary>
+        ///          |*****************************************|
+        ///          |          This is not working            |      
+        ///          |*****************************************|
+        /// </summary>
         public bool SortByModel()
         {
             IGenericStack<AstromechDroid> astromechStack = new GenericStack<AstromechDroid>();
@@ -209,79 +214,86 @@ namespace cis237_assignment_3
             IGenericStack<UtilityDroid> utilityStack = new GenericStack<UtilityDroid>();
             IGenericStack<ProtocolDroid> protocolStack = new GenericStack<ProtocolDroid>();
 
-            GenericQueue<IDroid> droidQueue = new GenericQueue<IDroid>();
+            IGenericQueue<IDroid> droidQueue = new GenericQueue<IDroid>();
 
             //Add droids to appropriate stack types
             for (int i = 0; i < collectionLength; i++)
             {
                 try
                 {
-                    astromechStack.AddModel((AstromechDroid)droidSectors[i]);
-                    i++;
+                    astromechStack.Add((AstromechDroid)droidSectors[i]);
                 }
                 catch
                 {
                     try
                     {
-                        janitorStack.AddModel((JanitorDroid)droidSectors[i]);
-                        i++;
+                        janitorStack.Add((JanitorDroid)droidSectors[i]);
                     }
                     catch
                     {
                         try
                         {
-                            utilityStack.AddModel((UtilityDroid)droidSectors[i]);
-                            i++;
+                            utilityStack.Add((UtilityDroid)droidSectors[i]);
                         }
                         catch
                         {
                             try
                             {
-                                protocolStack.AddModel((ProtocolDroid)droidSectors[i]);
-                                i++;
+                                protocolStack.Add((ProtocolDroid)droidSectors[i]);
                             }
                             catch
                             {
-
                                 return false;
                             }
                         }
                     }
                 }
-                return true;
+                i++;
             }
             //Add droids in order to the queue
-            while (astromechStack.Display != null)
+            while (astromechStack != null)
             {
-                droidQueue.AddModel((IDroid)astromechStack.Pop());
+                droidQueue.Add(astromechStack.Pop());
             }
-            while (janitorStack.Display != null)
+            while (janitorStack != null)
             {
-                droidQueue.AddModel((IDroid)janitorStack.Pop());
+                droidQueue.Add(janitorStack.Pop());
             }
-            while (utilityStack.Display != null)
+            while (utilityStack != null)
             {
-                droidQueue.AddModel((IDroid)utilityStack.Pop());
+                droidQueue.Add(utilityStack.Pop());
             }
-            while (protocolStack.Display != null)
+            while (protocolStack != null)
             {
-                droidQueue.AddModel((IDroid)protocolStack.Pop());
+                droidQueue.Add(protocolStack.Pop());
             }
 
             //Dequeue droids back into the array
             for (int i = 0; droidQueue != null; i++)
             {
-                    droidSectors[i] = (IDroid)droidQueue.Dequeue();
+                    droidSectors[i] = droidQueue.Dequeue();
             }
-
             return true;
         }
 
+        /// <summary>
+        ///          |*****************************************|
+        ///          |          This is not working            |      
+        ///          |*****************************************|
+        /// </summary>
         public bool SortByTotalCost()
         {
-            MergeSort mergeSort = new MergeSort(this.droidSectors, this.collectionLength);
+            if (droidSectors != null)
+            {
+                
+                MergeSort mergeSort = new MergeSort(droidSectors, collectionLength);
 
-            return true;
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
     }
 }

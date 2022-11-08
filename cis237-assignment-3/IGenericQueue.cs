@@ -14,7 +14,7 @@ namespace cis237_assignment_3
         ///          | Adds to the front of the list |
         ///          |*******************************| 
         /// </summary>
-        void AddModel(T Data);
+        void Add(T Data);
 
         /// <summary>
         ///                       Method

@@ -2,6 +2,7 @@
 // 10/17/22 - 10//22
 // CIS237 - Assignment - 3
 using System;
+using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using System.Security.Cryptography;
 using System.Xml.Serialization;
@@ -18,6 +19,7 @@ namespace cis237_assignment_3
             // +--------------------------------------------------------------+
             IDroidCollection droidCollection = new DroidCollection(100);
 
+            // hard coded Droids added to droidCollection array.
             droidCollection.AddNewProtocolDroid("Carbonite", "Jet Black", 300);
             droidCollection.AddNewProtocolDroid("Titanium", "Gold", 5000);
 
@@ -65,12 +67,13 @@ namespace cis237_assignment_3
                     case 2:
                         uI.PrintDroidList();
                         break;
-                    case 3:
+
+                    // below cases do not work right.
+                    case 3: // suppose to sort by Model, but crashes...
                         droidCollection.SortByModel();
-                        uI.PrintDroidList();
                         break;
                     case 4:
-                        droidCollection.SortByTotalCost();
+                        droidCollection.SortByTotalCost(); // suppose to sort by total cost, but does nothing.
                         break;
                 }
 

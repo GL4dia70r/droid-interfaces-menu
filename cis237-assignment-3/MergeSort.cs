@@ -12,15 +12,24 @@ namespace cis237_assignment_3
         protected int _aSize;
         protected IComparable[] _array;
 
-        // Main entry point to sort
-        public MergeSort(IComparable[] a, int length)
+        public MergeSort(
+            IComparable[] a, 
+            int length
+            )
         {
-            this._aSize = length;
             this._array = a;
+            this._aSize = length;
+        }
 
+        public MergeSort() 
+        { 
+            // Do Nothing
+        }
+
+        // Main entry point to sort
+        public static void Sort(IComparable[] a, int length)
+        {
             IComparable[] aux = new IComparable[a.Length];
-            this._array.CopyTo(aux, 0);
-
             Sort(a, aux, 0, a.Length - 1);
         }
 
@@ -41,7 +50,13 @@ namespace cis237_assignment_3
 
 
         // Merge a[lo .. mid] with a[mid+1 .. hi] using aux[lo .. hi]
-        private static void Merge(IComparable[] a, IComparable[] aux, int lo, int mid, int hi)
+        private static void Merge(
+            IComparable[] a, 
+            IComparable[] aux, 
+            int lo, 
+            int mid, 
+            int hi
+            )
         {
 
             // Copy to aux[]
@@ -63,7 +78,7 @@ namespace cis237_assignment_3
                 { // index past right subarray max index
                     a[k] = aux[i++];
                 }
-                else if (aux[j].CompareTo(aux[i]) < 0)
+                else if (aux[j].CompareTo(aux[i]) <= 0)
                 {  // compare
                     a[k] = aux[j++];
                 }

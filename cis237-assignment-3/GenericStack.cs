@@ -13,11 +13,11 @@ namespace cis237_assignment_3
         ///          | Make node class as an inner class |      
         ///          |***********************************|
         /// </summary>
-        protected class Node
+        public class Node<T>
         {
             public T Data { get; set; }
 
-            public Node Next { get; set; }
+            public Node<T> Next { get; set; }
         }
 
         /// <summary>
@@ -25,8 +25,8 @@ namespace cis237_assignment_3
         ///          | A couple of pointers to the head and tail of the linked list |      
         ///          |**************************************************************|
         /// </summary>
-        protected Node _head;
-        protected Node _tail;
+        protected Node<T> _head;
+        protected Node<T> _tail;
         protected int _size;
 
         public int Size
@@ -37,55 +37,81 @@ namespace cis237_assignment_3
             }
         }
 
+        public GenericStack<T>.Node<T> Head
+        {
+            get { return _head; }
+
+            set { _head = value; }  
+        }
+
+        public GenericStack<T>.Node<T> Tail
+        {
+            get { return _tail; }
+
+            set { _tail = value; }
+        }
+
+        public int Length
+        {
+            get { return _size; }
+
+            set { _size = value; }
+        }
+
         /// <summary>
         ///          |*****************************************|
-        ///          |       This has a big 'O' of O(1)        |      
+        ///          |       This may not be working           |      
         ///          |*****************************************|
         /// </summary>
-        public void AddModel(T Data)
+        public void Add(T Data)
         {
-            Node newNode = new Node();
+            Node<T> newNode = new Node<T>();
 
             newNode.Data = Data;
 
             if (_head == null)
             {
-                _head = newNode;
-                _tail = newNode;
-                _size++;
+                Head = newNode;
+                Tail = newNode;
+                Length++;
             }
             else
             {
-                _head.Next = newNode;
-                newNode.Next = _head;
                 _head = newNode;
-                _size++;
+                newNode.Next = Head;
+                Head = newNode;
+                Length++;
             }
         }
 
+        /// <summary>
+        ///          |*****************************************|
+        ///          |       This may not be working           |      
+        ///          |*****************************************|
+        /// </summary>
         public T Pop()
         {
             T returnData = default(T);
 
-            Node tempNode = new Node();
+            Node<T> tempNode = new Node<T>();
 
-            if (this._head != null)
+            if (this.Head != null)
             {
-                returnData = this._head.Data;
+                returnData = this.Head.Data;
 
-                tempNode = _head;
+                tempNode = Head;
 
-                this._head = this._head.Next;
+                this.Head = this.Head.Next;
 
-                if (this._head != null)
+                if (this.Head != null)
                 {
-                    this._head.Next = null;
+                    this.Head.Next = null;
                 }
 
                 tempNode.Next = null;
 
-                this._size--;
-            }    
+                this.Length--;
+            }
             return returnData;
         }
 
@@ -104,7 +130,7 @@ namespace cis237_assignment_3
             ///          | Start if at the head node.              |      
             ///          |*****************************************|
             /// </summary>
-            Node current = _head;
+            Node<T> current = Head;
 
 
             /// <summary>

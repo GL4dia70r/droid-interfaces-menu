@@ -38,7 +38,7 @@ namespace cis237_assignment_3
                 "Model: " + GetModelName() +
                 Environment.NewLine +
                 base.ToString() +
-                "Number of languages: " +
+                "Number of languages: " + this.numberLanguages +
                 Environment.NewLine;
         }
 

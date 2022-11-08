@@ -90,16 +90,11 @@ namespace cis237_assignment_3
         // +----------------------------------------------------------------------+
         public int CompareTo(Object obj)
         {
-            if (obj == null)
-            {
-                return -1;
-            }
-
             Droid otherDroid = obj as Droid;
 
             if (otherDroid != null)
             {
-                return this.TotalCost.CompareTo(otherDroid.TotalCost);
+                return TotalCost.CompareTo(otherDroid.TotalCost);
             }
             else
             {

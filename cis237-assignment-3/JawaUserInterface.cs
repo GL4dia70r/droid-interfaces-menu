@@ -140,12 +140,14 @@ namespace cis237_assignment_3
             Console.WriteLine(this.droidCollection.GetPrintString());
         }
 
-        public void PrintDroidModelList()
-        {
-            Console.WriteLine();
-            Console.WriteLine(this.droidCollection.SortByModel());
-        }
-
+        // Not used.
+        //public void PrintDroidModelList()
+        //{
+        //    Console.WriteLine();
+        //    Console.WriteLine(this.droidCollection.SortByModel());
+        //}
+        
+        // Not used.
         //public void PrintDroidTotalCostList()
         //{
         //    Console.WriteLine();
