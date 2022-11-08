@@ -106,7 +106,7 @@ https://barnesbrothers.ddns.net/cis237/recursion-visualizations/merge.html
 
 ## Known Problems, Issues, And/Or Errors in the Program
 
-Slight confusion implementing methods into DroidCollection class.
+MergeSort, Stacks, and Queue printing issues.
 
 <br/><br/><br/><br/><br/><br/><br/><br/>
 
