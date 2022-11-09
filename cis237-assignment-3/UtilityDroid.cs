@@ -40,7 +40,8 @@ namespace cis237_assignment_3
                 Environment.NewLine +
                 "Has a tool box: " + this.hasToolBox +
                 Environment.NewLine +
-                "Has a computer connection: " + this.hasComputerConnection +
+                "Has a computer connection: " + this.hasComputerConnection + 
+                Environment.NewLine +
                 "Has a scanner: " + this.hasScanner +
                 Environment.NewLine;
         }

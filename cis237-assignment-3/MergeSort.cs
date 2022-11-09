@@ -9,23 +9,6 @@ namespace cis237_assignment_3
 {
     internal class MergeSort
     {
-    //    protected int _aSize;
-    //    protected IComparable[] _array;
-
-    //    public MergeSort(
-    //        IComparable[] a, 
-    //        int length
-    //        )
-    //    {
-    //        this._array = a;
-    //        this._aSize = length;
-    //    }
-
-    //    public MergeSort() 
-    //    { 
-    //        // Do Nothing
-    //    }
-
         // Main entry point to sort
         public static void Sort(IComparable[] a, int length)
         {
@@ -50,13 +33,7 @@ namespace cis237_assignment_3
 
 
         // Merge a[lo .. mid] with a[mid+1 .. hi] using aux[lo .. hi]
-        private static void Merge(
-            IComparable[] a, 
-            IComparable[] aux, 
-            int lo, 
-            int mid, 
-            int hi
-            )
+        private static void Merge(IComparable[] a, IComparable[] aux, int lo, int mid, int hi)
         {
 
             // Copy to aux[]
@@ -89,6 +66,6 @@ namespace cis237_assignment_3
             }
         }
 
-        
+
     }
 }

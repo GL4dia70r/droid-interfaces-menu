@@ -45,30 +45,6 @@ namespace cis237_assignment_3
             }
         }
 
-        public Node Head
-        {
-            get
-            {
-                return _head;
-            }
-            set
-            {
-                _head = value;
-            }
-        }
-
-        public Node Tail
-        {
-            get
-            {
-                return _tail;
-            }
-            set
-            {
-                _tail = value;
-            }
-        }
-
         public int Size
         {
             get

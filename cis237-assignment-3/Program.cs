@@ -19,16 +19,24 @@ namespace cis237_assignment_3
             // +--------------------------------------------------------------+
             IDroidCollection droidCollection = new DroidCollection(100);
 
+            IDroidCollection droid = new DroidCollection(8);
+
+            droid.AddNewProtocolDroid("Carbonite", "Jet Black", 300);
+            droid.AddNewProtocolDroid("Titanium", "Gold", 5000);
+            droid.AddNewUtilityDroid("Carbonite", "Pearl White", true, true, true);
+            droid.AddNewUtilityDroid("Black Steel", "Gold", false, true, true);
+            droid.AddNewJanitorDroid("Carbonite", "Pearl White", false, true, true, true, true);
+            droid.AddNewJanitorDroid("Carbonite", "Jet Black", true, true, true, true, true);
+            droid.AddNewAstromechDroid("Carbonite", "Jet Black", true, true, true, true, 5600);
+            droid.AddNewAstromechDroid("Blaster Practice", "Jet Black", true, false, false, true, 500);
+
             // hard coded Droids added to droidCollection array.
             droidCollection.AddNewProtocolDroid("Carbonite", "Jet Black", 300);
             droidCollection.AddNewProtocolDroid("Titanium", "Gold", 5000);
-
             droidCollection.AddNewUtilityDroid("Carbonite", "Pearl White", true, true, true); 
             droidCollection.AddNewUtilityDroid("Black Steel", "Gold", false, true, true);
-
             droidCollection.AddNewJanitorDroid("Carbonite", "Pearl White", false, true, true, true, true);
             droidCollection.AddNewJanitorDroid("Carbonite", "Jet Black", true, true, true, true, true);
-
             droidCollection.AddNewAstromechDroid("Carbonite", "Jet Black", true, true, true, true, 5600);
             droidCollection.AddNewAstromechDroid("Blaster Practice", "Jet Black", true, false, false, true, 500);
 
@@ -70,10 +78,10 @@ namespace cis237_assignment_3
 
                     // below cases do not work right.
                     case 3: // suppose to sort by Model, but crashes...
-                        uI.PrintDroidModelList();
+                        uI.SortDroidModelList();
                         break;
                     case 4:
-                        uI.PrintDroidTotalCostList(); // suppose to sort by total cost, but does nothing.
+                        uI.SortDroidTotalCostList(); // suppose to sort by total cost, crashes, .
                         break;
                 }
 

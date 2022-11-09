@@ -15,7 +15,7 @@ namespace cis237_assignment_3
         // | Private variable to hold the collection of droids. |
         // +----------------------------------------------------+
         private IDroid[] droidSectors;
-
+        private IDroid[] droids;
 
         // +----------------------------------------------------+
         // | Private variable to hold the collection of droids. |
@@ -34,7 +34,7 @@ namespace cis237_assignment_3
             this.collectionLength = 0;
         }
 
-        
+  
 
         // +---------------------------------------------------------------------------------------+
         // | Adds new protocol droid information gathered by the parameters passed passed through. |
@@ -276,9 +276,6 @@ namespace cis237_assignment_3
             {
                droidSectors[i] = droidQueue.Dequeue();
             }
-
-            Console.WriteLine(droidSectors[8]);
-
             return true;
             
         }
@@ -290,11 +287,21 @@ namespace cis237_assignment_3
         /// </summary>
         public bool SortByTotalCost()
         {
-            if (droidSectors.Length != 0)
+            if (droidSectors != null)
             {
-                MergeSort.Sort(droidSectors, collectionLength);
-
+                this.droidSectors = new Droid[8];
+                this.collectionLength = this.droidSectors.Length;
+                
+                for (int i = 0; i < this.collectionLength; i++)
+                {
+                    if (this.droidSectors[i] != null)
+                    {
+                        this.droidSectors[i] = this.droidSectors[i];
+                    }
+                    MergeSort.Sort(this.droidSectors, this.collectionLength);
+                }
                 return true;
+                
             }
             else
             {
